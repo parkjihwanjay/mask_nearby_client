@@ -7,8 +7,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "connect:server": "ssh -i ./src/config/corona-elksha.pem ubuntu@13.125.208.102",
-    "deploy": "ssh -i ./src/config/corona-elksha.pem ubuntu@13.125.208.102 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\""
+    "connect:server": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82",
+    "deploy": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\""
   },
   "dependencies": {
     "axios": "^0.19.2",
