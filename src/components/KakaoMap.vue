@@ -1,0 +1,624 @@
+<template>
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+    <div class="map" id="map" ref="map">
+      <div class="input-back-back" style="position: relative; top: 60px;">
+        <div class="input-backg">
+          <div class="search-input" id="search-input" type="text" value>
+            <input
+              v-model="keyWord"
+              @keyup.enter="search()"
+              value
+              type="text"
+              class="search-input-in"
+              placeholder="목적지를 검색하세요"
+            />
+            <button class="search-btn" id="search-btn" @click="search()">
+              <img class="search-icon" src="../assets/qna.png" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Spinner v-if="spinnerLoading" />
+  </div>
+</template>
+
+<script>
+import hideVirtualKeyboard from "hide-virtual-keyboard";
+
+import axios from "axios";
+import Spinner from "./Spinner.vue";
+import { displayMarker, hideMarkers, hideOverlays } from "../utils/marker.js";
+export default {
+  name: "KaKaoMap",
+  components: {
+    Spinner
+  },
+  data() {
+    return {
+      keyWord: "",
+      latitude: "",
+      longitude: "",
+      spinnerLoading: false,
+      maskData: [],
+      soldoutMarkers: [],
+      maskMarkers: []
+      // overlays : [],
+      // baseUrl: process.env.VUE_APP_BASE_URL
+    };
+  },
+  created() {
+    this.maskData = this.$route.params.maskData;
+    this.longitude = this.$route.params.longitude;
+    this.latitude = this.$route.params.latitude;
+  },
+  mounted() {
+    const mapContainer = this.$refs.map; // 지도를 표시할 div
+
+    const mapOption = {
+      center: new kakao.maps.LatLng(this.latitude, this.longitude), // 지도의 중심좌표
+      level: 3 // 지도의 확대 레벨
+    };
+    window.map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    window.map.setMaxLevel(5);
+    // this.soldoutMarker = [];
+    // window.soldoutMarker = [];
+    // window.markers = [];
+    window.overlays = [];
+
+    // const locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+    this.displayMasks(this.maskData);
+    // this.getPharm();
+
+    kakao.maps.event.addListener(window.map, "dragend", async () => {
+      // 지도 중심좌표를 얻어옵니다
+      hideOverlays(window.overlays);
+      let latlng = window.map.getCenter();
+      this.latitude = latlng.Ha;
+      this.longitude = latlng.Ga;
+      this.getCurrentMasks();
+      // const diff = Math.abs(this.latitude - latlng.Ha + (this.longitude - latlng.Ga));
+      // if (diff > 0.015) {
+      // 	this.latitude = latlng.Ha;
+      // 	this.longitude = latlng.Ga;
+      // 	this.getCurrentMasks();
+      // }
+    });
+
+    // if (!window.markers.length) {
+    // 	alert('주변에 마스크 재고가 있는 편의점을 찾지 못했습니다');
+    // 	this.$router.push('/');
+    // }
+  },
+  methods: {
+    checkHour() {
+      const hour = new Date().getHours();
+      if (10 > hour || hour >= 23) {
+        alert(
+          "재고 현황은 11시에서 23시에만 제공되어 현재는 다 soldout으로 표시합니다! 위치 확인 후 아침에 이용해주세요 :)"
+        );
+      }
+    },
+    // async getPharm() {
+    //   const pharm = await axios.get(this.baseUrl + "pharm.json");
+    //   console.log(pharm);
+    // },
+    // fetchData() {
+    //   axios.get(this.baseUrl + "p.json").then(response => {
+    //     console.log(response);
+    //   });
+    // },
+    async getCurrentMasks() {
+      window.map.setDraggable(false);
+      // window.markers = [];
+      this.maskMarkers = [];
+      this.spinnerLoading = true;
+      try {
+        const res = await axios.get(
+          // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
+          // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
+          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+        );
+
+        const locPosition = new kakao.maps.LatLng(
+          this.latitude,
+          this.longitude
+        );
+
+        window.map.setCenter(locPosition);
+
+        this.maskData = res.data;
+        this.displayMasks(this.maskData);
+        this.spinnerLoading = false;
+        window.map.setDraggable(true);
+
+        // if (!window.markers.length) {
+        // 	alert('주변에 마스크 재고가 있는 편의점을 찾지 못했습니다');
+        // }
+      } catch (e) {
+        this.spinnerLoading = false;
+        alert("서버 접속이 많아서 재시도 해 주세요");
+      }
+    },
+    maskInfo(masks) {
+      let maskInfo = "";
+      let masksTotal = 0;
+      for (let i = 0; i < masks.length; i++) {
+        if (masks[i].stock_amount != null) {
+          masksTotal += masks[i].stock_amount;
+        }
+      }
+      maskInfo =
+        maskInfo + "<div class='mask-total-num'>" + masksTotal + "</div>";
+      return maskInfo;
+    },
+    displayMasks(maskData) {
+      for (let i = 0; i < maskData.length; i++) {
+        maskData[i].soldout
+          ? this.displaySoldout(maskData[i])
+          : this.displayMask(maskData[i]);
+        // if(i==0) this.displayMask(maskData[i]);
+        // else{
+        // 	maskData[i].soldout
+        // 		? this.displaySoldout(maskData[i])
+        // 		: this.displayMask(maskData[i]);
+        // }
+      }
+    },
+    displaySoldout(maskItem) {
+      const imageSrc = "/img/soldout.png", // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+      const markerImage = new kakao.maps.MarkerImage(
+        imageSrc,
+        imageSize,
+        imageOption
+      );
+      const locPosition = new kakao.maps.LatLng(maskItem.lat, maskItem.lng);
+
+      window.map.setLevel(5);
+
+      const soldoutMarker = new kakao.maps.Marker({
+        map: window.map,
+        position: locPosition,
+        image: markerImage
+      });
+      soldoutMarker.setMap(window.map);
+      this.soldoutMarkers.push(soldoutMarker);
+    },
+    displayMask(maskItem) {
+      const imageSrc = "/img/stt.png", // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+      const markerImage = new kakao.maps.MarkerImage(
+        imageSrc,
+        imageSize,
+        imageOption
+      );
+      const locPosition = new kakao.maps.LatLng(maskItem.lat, maskItem.lng);
+
+      window.map.setLevel(5);
+
+      const marker = new kakao.maps.Marker({
+        map: window.map,
+        position: locPosition,
+        image: markerImage,
+        zIndex: 9
+      });
+      let long3;
+      const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+      // 마커에 클릭이벤트를 등록합니다
+      if (maskItem.name) {
+        const maskOverlay = this.maskInfo(maskItem.masks);
+
+        const content =
+          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 73px; z-index: 9999;' +
+          long3 +
+          '">' +
+          '    <div class="info" style="">' +
+          '        <div class="title">' +
+          maskItem.name +
+          '            <img src="/img/overclose.png" id="search-overlay" style="padding-right:7px;"	 onclick="closeSearchOverLay()" title="닫기"></img>' +
+          "        </div>" +
+          '        <div class="body">' +
+          '            <div class="desc">' +
+          '                <div class="ellipsis">' +
+          "총 재고 현황" +
+          "</div>" +
+          '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
+          maskOverlay +
+          "<div class='find-address'>" +
+          '                <div class=""><div class="smallicons earth"></div><a href="https://www.yogiyo.co.kr/mobile/#/' +
+          maskItem.yogiyo_id +
+          ' "class="link"><div class="font-in-overlay" style="right: 95px;">확인하기</div></div>' +
+          '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
+          maskItem.address +
+          ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
+          "</div>" +
+          "</div>" +
+          "            </div>" +
+          "        </div>" +
+          "    </div>" +
+          "</div>";
+
+        const overLay = new kakao.maps.CustomOverlay({
+          content: content,
+          map: window.map,
+          position: locPosition
+        });
+
+        overLay.setMap(null);
+
+        kakao.maps.event.addListener(marker, "click", () => {
+          // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+          hideOverlays(window.overlays);
+          // overLay.setMap(null);
+          overLay.setMap(window.map);
+          // seracrOverLays.push(overLay);
+        });
+        window.overlays.push(overLay);
+      }
+
+      // 지도 중심좌표를 접속위치로 변경합니다
+      // window.map.setCenter(locPosition);
+      marker.setMap(window.map);
+      this.maskMarkers.push(marker);
+      // window.markers.push(marker);
+    },
+    hideMarkers(markers) {
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+    },
+    menuToggle() {
+      const nav = this.$refs.nav;
+      nav.classList.toggle("active");
+    },
+    search() {
+      hideVirtualKeyboard();
+      this.checkHour();
+      if (!this.keyWord.length) return alert("검색어를 입력해주세요");
+      const ps = new kakao.maps.services.Places();
+      ps.keywordSearch(this.keyWord, this.addresssSearchCB);
+    },
+    async addresssSearchCB(data, status, pagination) {
+      if (status === kakao.maps.services.Status.OK) {
+        this.spinnerLoading = true;
+        const coords = new kakao.maps.LatLng(data[0].y, data[0].x);
+        this.latitude = coords.Ha;
+        this.longitude = coords.Ga;
+        const locPosition = new kakao.maps.LatLng(
+          this.latitude,
+          this.longitude
+        );
+
+        window.map.setCenter(locPosition);
+
+        await this.getMaskInfo();
+      }
+    },
+    async getMaskInfo() {
+      this.maskMarkers = [];
+      this.spinnerLoading = true;
+      try {
+        const res = await axios.get(
+          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+        );
+        this.maskData = res.data;
+        for (let i = 0; i < this.maskData.length; i++) {
+          if (this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
+          else this.displayMask(this.maskData[i]);
+        }
+        this.spinnerLoading = false;
+      } catch (e) {
+        this.spinnerLoading = false;
+        alert("서버 접속이 많아서 재시도 해 주세요");
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.footer-btn {
+  display: flex;
+  position: absolute;
+  bottom: 60px;
+  justify-content: center;
+  align-items: center;
+  width: 283px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 28px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #75d0e7;
+  font-weight: bold;
+  color: white;
+  -webkit-text-fill-color: white;
+  font-size: 16px;
+  z-index: 99999;
+  cursor: pointer;
+}
+
+.footer-btn-parent {
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  z-index: 99;
+  position: relative;
+  font-size: 10px;
+  margin: 50px auto;
+  text-indent: -9999em;
+  width: 15em;
+  height: 15em;
+  border-radius: 50%;
+  background: #ffffff;
+  background: -moz-linear-gradient(
+    left,
+    #75d0e7 10%,
+    rgba(255, 255, 255, 0) 42%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    #75d0e7 10%,
+    rgba(255, 255, 255, 0) 42%
+  );
+  background: -o-linear-gradient(left, #75d0e7 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(
+    left,
+    #75d0e7 10%,
+    rgba(255, 255, 255, 0) 42%
+  );
+  background: linear-gradient(
+    to right,
+    #75d0e7 10%,
+    rgba(255, 255, 255, 0) 42%
+  );
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #75d0e7;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+.loader:after {
+  background: white;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: "";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* spinner */
+.input-back-back {
+  bottom: 10vh;
+}
+.close {
+  background: url("../assets/overclose.png");
+}
+.search-input {
+  max-width: 700px;
+}
+.btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.btn {
+  width: 11rem;
+  line-height: 11rem;
+  background: #75d0e7;
+  border-radius: 50%;
+  text-align: center;
+  margin: 1.6rem;
+  font-size: 0.8rem;
+  border: none;
+  padding: 0;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: bold;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16);
+  position: relative;
+  outline: none;
+}
+
+@media (max-width: 768px) and (max-height: 700px) {
+  .input-back-back {
+    bottom: 11vh;
+  }
+  .btn {
+    width: 6.4rem;
+    line-height: 6.4rem;
+  }
+  .toptext {
+    bottom: 61.6vh !important;
+  }
+  .loadtogether {
+    position: relative;
+    top: 0px !important;
+  }
+}
+
+.btn--shockwave.is-active {
+  -webkit-animation: shockwaveJump 1s ease-out infinite;
+  animation: shockwaveJump 1s ease-out infinite;
+}
+.btn--shockwave.is-active:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  -webkit-animation: shockwave 1s 0.65s ease-out infinite;
+  animation: shockwave 1s 0.65s ease-out infinite;
+}
+.btn--shockwave.is-active:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  -webkit-animation: shockwave 1s 0.5s ease-out infinite;
+  animation: shockwave 1s 0.5s ease-out infinite;
+}
+
+@-webkit-keyframes shockwaveJump {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  40% {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
+  }
+  50% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  55% {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+  }
+  60% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes shockwaveJump {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  40% {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
+  }
+  50% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  55% {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+  }
+  60% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes shockwave {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  95% {
+    box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
+  }
+  100% {
+    -webkit-transform: scale(2.25);
+    transform: scale(2.25);
+  }
+}
+@keyframes shockwave {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  95% {
+    box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
+  }
+  100% {
+    -webkit-transform: scale(2.25);
+    transform: scale(2.25);
+  }
+}
+.btn--jump.is-active {
+  -webkit-animation: 0.4s jump ease infinite alternate;
+  animation: 0.4s jump ease infinite alternate;
+}
+
+@-webkit-keyframes jump {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes jump {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+</style>
