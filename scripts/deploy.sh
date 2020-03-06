@@ -5,11 +5,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 DEPLOY_LOCATION=/home/ubuntu/deploy
-PROJECT=/home/ubuntu/deploy/mask-nearby
-GIT_REPOSITORY=git@github.com:parkjihwanjay/mask-nearby.git
-# github에 git이라는 계정으로 접속해서 antlikelion이 가진 mask-nearby라는 레포에 연결
-DIST=/home/ubuntu/deploy/mask-nearby/dist 
-BUILD=/home/ubuntu/deploy/mask-nearby/build
+PROJECT=/home/ubuntu/deploy/mask-nearby-client
+GIT_REPOSITORY=git@github.com:antlikelion/mask-nearby-client.git
+# github에 git이라는 계정으로 접속해서 antlikelion이 가진 mask-nearby-client라는 레포에 연결
+DIST=/home/ubuntu/deploy/mask-nearby-client/dist 
+BUILD=/home/ubuntu/deploy/mask-nearby-client/build
 # build명령어는 시간을 꽤 잡아먹기 때문에 DIST 디렉토리 없이 build를 쓰면 무중단 배포에서 한참 멀어진다.
 # build로 만들어진 디렉토리를 dist디렉토리로 이름 변경해서 nginx가 dist를 root로 삼게한다.
 # 새로 배포를 하면 dist는 dist.old로, build는 새로운 dist로 변경된다.
@@ -55,7 +55,6 @@ else
 
   echo "Deploy New Version..."
   mv $DIST $BUILD
-  sudo nginx -c /home/ubuntu/config/nginx/nginx.conf -s reload
 fi
 
 exit 0
