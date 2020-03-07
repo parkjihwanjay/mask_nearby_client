@@ -3,7 +3,10 @@
     <div class="modal__overlay"></div>
     <!-- <div class="modal__content"> -->
     <div class="modal__content">
-      <div class="modal-header">
+      <div
+        class="modal-header"
+        style="background-image: linear-gradient(306deg, #79d3e6 105%, #83d6e8 73%, #89d8e9 23%, #ffffff -5%);"
+      >
         <div class="modal-header__title">
           <div>마스크 알리미</div>
           <button class="closeBtn">
