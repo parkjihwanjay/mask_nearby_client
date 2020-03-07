@@ -12,17 +12,17 @@
   z-index: 99;
 }
 .search-input {
+  /* border: solid 1px #006ecb; */
   width: 90vw;
   height: 7vh;
   max-height: 50px;
   border-radius: 26px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
   top: 43px;
   z-index: 99;
   background-color: #ffffff;
   font-size: 15px;
   font-family: "Nanum Gothic", sans-serif;
-  border: none;
   background-size: 20px;
   display: flex;
   justify-content: center;

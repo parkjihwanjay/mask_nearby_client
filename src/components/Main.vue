@@ -1,21 +1,30 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 60px;">
+  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 0px;">
+    <!-- <div style="width: 80vw; max-width: 700px;">
+      <img class="questionmark" style="position: relative; width: 25px; top: 10px; left: -10px;" src="../assets/qms.png" />
+    </div>-->
     <div class="logos">
       <img
         class="logoimg"
-        style="width: 40vh; position: relative; bottom: -1vh;"
+        style="width: 40vh; position: relative; bottom: 3vh;"
         src="../assets/horizontal.png"
       />
     </div>
     <div
       class="toptext"
-      style="position: relative; width: 100%; font-size: 1.4em; font-weight: bold; top: -17vh;"
+      style="position: relative; width: 100%; font-size: 1.4em; font-weight: bold; top: -21vh;"
     >
       <img style="width: 44vh;" src="../assets/headtext5.png" />
     </div>
-    <div class="input-back-back" style="position: absolute; width: 100%; height: 100%; top: 35%;">
+    <div class="input-back-back" style="position: absolute; width: 100%; height: 100%; top: 32%;">
       <div class="input-backg">
-        <div class="search-input" id="search-input" type="text" value>
+        <div
+          class="search-input"
+          style="width: 80vw; height: 6.5vh;"
+          id="search-input"
+          type="text"
+          value
+        >
           <input
             @keyup.enter="search()"
             v-model="keyWord"
@@ -31,13 +40,20 @@
         </div>
       </div>
     </div>
-    <div class="btn-container" style="width: 100%; position: absolute; bottom: 18%;">
+    <div class="btn-container" style="width: 100%; position: absolute; bottom: 22%;">
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
         class="btn btn--shockwave is-active"
         style="color:#ffffff; -webkit-text-fill-color: #ffffff;"
-      >현재 위치로 보기</button>
+      >
+        <img
+          class="searchbtn"
+          style="position: absolute; width: 11rem; right: 0px;"
+          src="../assets/searchbutton.png"
+        />
+        현재 위치로 보기
+      </button>
     </div>
     <Spinner v-if="spinnerLoading" />
     <Info />
@@ -300,6 +316,10 @@ export default {
   }
   .btn {
     width: 6.4rem;
+    line-height: 6.4rem;
+  }
+  .searchbtn {
+    width: 6.4rem !important;
     line-height: 6.4rem;
   }
   .toptext {
