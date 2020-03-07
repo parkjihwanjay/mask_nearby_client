@@ -43,17 +43,67 @@ export default {
       latitude: "",
       longitude: "",
       spinnerLoading: false,
-      maskData: [],
+      // maskData: [],
+      maskData: [
+        {
+          addr: "서울특별시 서대문구 모래내로 359 (홍은동)",
+          code: "11858524",
+          created_at: "2020/03/07 19:40:00",
+          lat: 37.5818747,
+          lng: 126.9358991,
+          name: "대유약국",
+          remain_cnt: 58,
+          sold_cnt: 292,
+          sold_out: false,
+          stock_cnt: 350,
+          stock_t: "10:44",
+          tel: "02-379-4416",
+          type: "01"
+        },
+        {
+          addr: "경상북도 구미시 1공단로 169 (공단동)",
+          code: "37847465",
+          created_at: "2020/03/07 19:40:00",
+          lat: 36.10233,
+          lng: 128.3818679,
+          name: "구미대형약국",
+          remain_cnt: 16,
+          sold_cnt: 434,
+          sold_out: false,
+          stock_cnt: 450,
+          stock_t: "11:15",
+          tel: "054-463-8275",
+          type: "02"
+        },
+        {
+          addr: "전라북도 익산시 선화로3길 16-10 (모현동1가)",
+          code: "35808705",
+          created_at: "2020/03/07 19:40:00",
+          lat: 35.9500036,
+          lng: 126.9388925,
+          name: "선한약국",
+          remain_cnt: 6,
+          sold_cnt: 444,
+          sold_out: false,
+          stock_cnt: 450,
+          stock_t: "11:14",
+          tel: "063-855-7713",
+          type: "03"
+        }
+      ],
       soldoutMarkers: [],
+      // maskMarkers: [],
       maskMarkers: []
       // overlays : [],
       // baseUrl: process.env.VUE_APP_BASE_URL
     };
   },
   created() {
-    this.maskData = this.$route.params.maskData;
-    this.longitude = this.$route.params.longitude;
-    this.latitude = this.$route.params.latitude;
+    // this.maskData = this.$route.params.maskData;
+    // this.longitude = this.$route.params.longitude;
+    // this.latitude = this.$route.params.latitude;
+    this.latitude = 37.548236103794;
+    this.longitude = 127.026326090073;
   },
   mounted() {
     const mapContainer = this.$refs.map; // 지도를 표시할 div
@@ -63,7 +113,7 @@ export default {
       level: 3 // 지도의 확대 레벨
     };
     window.map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-    window.map.setMaxLevel(5);
+    // window.map.setMaxLevel(5);
     // this.soldoutMarker = [];
     // window.soldoutMarker = [];
     // window.markers = [];
@@ -173,16 +223,10 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-        if (!maskData[i].sold_out) this.displaySoldout(maskData[i]);
-        this.displayMask(maskData[i]);
-        // if (maskData[i].type === "01") {
-
-        //   // 약국 띄우기
-        // } else if (maskData[i].type === "02") {
-        //   // 하나로 or 우체국
-        // } else {
-        //   // 하나로 or 우체국
-        // }
+        if (maskData[i].sold_out) this.displaySoldout(maskData[i]);
+        else {
+          this.displayMask(maskData[i]);
+        }
         // maskData[i].soldout
         //   ? this.displaySoldout(maskData[i])
         //   : this.displayMask(maskData[i]);
@@ -222,15 +266,15 @@ export default {
       let imageOption;
 
       if (maskItem.type === "01") {
-        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       } else if (maskItem.type === "02") {
-        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSrc = "/img/hanaro.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       } else {
-        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSrc = "/img/post.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       }
@@ -255,7 +299,7 @@ export default {
       const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
-        const maskOverlay = this.maskInfo(maskItem.masks);
+        // const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
           '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 73px; z-index: 9999;' +
@@ -272,13 +316,17 @@ export default {
           "총 재고 현황" +
           "</div>" +
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
-          maskOverlay +
+          maskItem.remain_cnt +
           "<div class='find-address'>" +
           '                <div class=""><div class="smallicons earth"></div><a href="tel:' +
           maskItem.tel +
           ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
-          maskItem.address +
+          maskItem.name +
+          "," +
+          maskItem.lat +
+          "," +
+          maskItem.lng +
           ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
           "</div>" +
           "</div>" +
@@ -352,7 +400,7 @@ export default {
         );
         this.maskData = res.data;
         for (let i = 0; i < this.maskData.length; i++) {
-          if (this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
+          if (!this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
           else this.displayMask(this.maskData[i]);
         }
         this.spinnerLoading = false;
