@@ -10,13 +10,24 @@
         src="../assets/horizontal.png"
       />
     </div>
-    <div
+    <!-- <div
       class="toptext"
       style="position: relative; width: 100%; font-size: 1.4em; font-weight: bold; top: -21vh;"
     >
       <img style="width: 44vh;" src="../assets/headtext5.png" />
+    </div>-->
+    <div class="yearcheck" style="width: 100%; font-size: 12px; position: relative; bottom: 14%;">
+      <div>1997년생 이신 분은</div>
+      <div style="color:#006ecb; font-weight: bold;">구매하실 수 있는 날입니다.</div>
+      <div
+        style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb;"
+      >다시 확인하기</div>
+      <img
+        style="position: relative; width: 11px; top: 10px;display:inline;"
+        src="../assets/reload.png"
+      />
     </div>
-    <div class="input-back-back" style="position: absolute; width: 100%; height: 100%; top: 32%;">
+    <div class="input-back-back" style="position: absolute; width: 100%; height: 100%; top: 35%;">
       <div class="input-backg">
         <div
           class="search-input"
