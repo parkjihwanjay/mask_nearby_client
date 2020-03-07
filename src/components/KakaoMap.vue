@@ -76,7 +76,7 @@ export default {
       let latlng = window.map.getCenter();
       this.latitude = latlng.Ha;
       this.longitude = latlng.Ga;
-      this.getCurrentMasks();
+      this.getMasks();
       // const diff = Math.abs(this.latitude - latlng.Ha + (this.longitude - latlng.Ga));
       // if (diff > 0.015) {
       // 	this.latitude = latlng.Ha;
@@ -108,16 +108,17 @@ export default {
     //     console.log(response);
     //   });
     // },
-    async getCurrentMasks() {
+    async getMasks() {
       window.map.setDraggable(false);
       // window.markers = [];
       this.maskMarkers = [];
       this.spinnerLoading = true;
       try {
+        // 요청 서버를 정부 서버로
         const res = await axios.get(
           // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
           // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+          `/?lat=${this.latitude}&lng=${this.longitude}`
         );
 
         const locPosition = new kakao.maps.LatLng(
@@ -136,7 +137,22 @@ export default {
         // 	alert('주변에 마스크 재고가 있는 편의점을 찾지 못했습니다');
         // }
       } catch (e) {
+        try {
+          const res = await axios.get("두희님 서버");
+          const locPosition = new kakao.maps.LatLng(
+            this.latitude,
+            this.longitude
+          );
+
+          window.map.setCenter(locPosition);
+
+          this.maskData = res.data;
+          this.displayMasks(this.maskData);
+          this.spinnerLoading = false;
+          window.map.setDraggable(true);
+        } catch (e) {}
         this.spinnerLoading = false;
+        window.map.setDraggable(true);
         alert("서버 접속이 많아서 재시도 해 주세요");
       }
     },
