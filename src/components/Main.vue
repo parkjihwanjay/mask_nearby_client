@@ -17,11 +17,19 @@
       <img style="width: 44vh;" src="../assets/headtext5.png" />
     </div>-->
     <div class="yearcheck" style="width: 100%; font-size: 12px; position: relative; bottom: 14%;">
-      <div>1997년생 이신 분은</div>
-      <div style="color:#006ecb; font-weight: bold;">구매하실 수 있는 날입니다.</div>
+      <template v-if="birthDate.length">
+        <div>{{birthDate}}생 이신 분은</div>
+        <div style="color:#006ecb; font-weight: bold;">{{buyPossible}}</div>
+      </template>
+      <template v-else>
+        <div>마스크 5부제에 따른</div>
+        <div style="color:#006ecb; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
+      </template>
       <div
+        ref="check"
+        @click="checkDate"
         style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb;"
-      >다시 확인하기</div>
+      >{{checkComment}}</div>
       <img
         style="position: relative; width: 11px; top: 10px;display:inline;"
         src="../assets/reload.png"
@@ -92,7 +100,25 @@ export default {
     Spinner,
     Info
   },
+  props: ["birthDate"],
+  computed: {
+    checkComment() {
+      if (!this.birthDate.length) return "확인하기";
+      else return "다시 확인하기";
+    },
+    buyPossible() {
+      let today = new Date().getDay();
+      // today = 2;
+      if (!today || today === 6) return "구매하실 수 있습니다";
+      if (today === this.birthDate[3] || today === (this.birthDate[3] + 5)[1])
+        return "구매하실 수 있습니다";
+      else return "구매하실 수 없습니다";
+    }
+  },
   methods: {
+    checkDate() {
+      this.$emit("checkDate");
+    },
     search() {
       console.log("search");
       hideVirtualKeyboard();

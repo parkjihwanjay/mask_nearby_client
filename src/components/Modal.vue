@@ -1,6 +1,6 @@
 <template>
   <div class="topmodal">
-    <div class="modal" style="display: none;">
+    <div class="modal" v-if="showInfoModal">
       <div class="modal__overlay"></div>
       <!-- <div class="modal__content"> -->
       <div class="modal__content">
@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="modal2">
+    <div class="modal2" v-if="showDateModal">
       <div class="modal__overlay"></div>
       <!-- <div class="modal__content"> -->
       <div class="modal__content">
@@ -94,12 +94,15 @@
               id="selectoption"
               style="position: absolute; border-radius: 7px; border: solid; border-width: 1px; border-color: #7ed4e7; width: 180px; height: 38px; top: 35px; left: 15px; background-color: rgba(255,255,255,0); font-size: 11px; padding-left: 8px;"
               name="year"
+              v-model="birthDate"
             >
               <option value="선택해주세요" selected="selected">선택해주세요</option>
-              <option value="바나나">바나나</option>
-              <option value="사과">사과</option>
+              <option value="1996">1996</option>
+              <option value="1997">1997</option>
+              <option value="1998">1998</option>
             </select>
             <button
+              @click="clickButton"
               style="position: relative; left: 49px; top: -10px; width: 113px;
   height: 35px;
   border-radius: 19px;
@@ -115,7 +118,20 @@
 <script>
 export default {
   name: "Modal",
-  methods: {}
+  methods: {
+    clickButton() {
+      this.$emit("clickButton", this.birthDate);
+    }
+  },
+  data() {
+    return {
+      birthDate: "선택해주세요"
+    };
+  },
+  props: ["showInfoModal", "showDateModal"],
+  created() {
+    console.log(this.showInfoModal, this.showDateModal);
+  }
 };
 </script>
 
