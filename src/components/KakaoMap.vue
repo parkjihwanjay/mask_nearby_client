@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
@@ -352,7 +349,7 @@ export default {
         );
         this.maskData = res.data;
         for (let i = 0; i < this.maskData.length; i++) {
-          if (this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
+          if (!this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
           else this.displayMask(this.maskData[i]);
         }
         this.spinnerLoading = false;
