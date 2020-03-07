@@ -171,7 +171,8 @@ export default {
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
         if (maskData[i].soldout) this.displaySoldout(maskData[i]);
-        this.displayMask(maskData[i]);
+        else this.displayMask(maskData[i]);
+
         // if (maskData[i].type === "01") {
 
         //   // 약국 띄우기
@@ -255,6 +256,7 @@ export default {
       const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
+        console.log(maskItem);
         const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
