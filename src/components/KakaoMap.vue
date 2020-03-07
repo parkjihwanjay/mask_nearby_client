@@ -118,7 +118,7 @@ export default {
         const res = await axios.get(
           // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
           // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `/?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
 
         const locPosition = new kakao.maps.LatLng(
@@ -345,7 +345,7 @@ export default {
       this.spinnerLoading = true;
       try {
         const res = await axios.get(
-          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
         this.maskData = res.data;
         for (let i = 0; i < this.maskData.length; i++) {

@@ -4,7 +4,7 @@ import router from "./router/index.js";
 
 import axios from "axios";
 
-const DEPLOY_IP = "https://api.mask-nearby.com";
+const DEPLOY_IP = "https://api.mask-nearby.com/mask";
 // const DEPLOY_IP = "https://mask-api.com";
 const LOCAL_IP = "http://localhost:3000";
 
