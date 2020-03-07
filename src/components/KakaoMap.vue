@@ -76,7 +76,7 @@ export default {
       let latlng = window.map.getCenter();
       this.latitude = latlng.Ha;
       this.longitude = latlng.Ga;
-      this.getCurrentMasks();
+      this.getMasks();
       // const diff = Math.abs(this.latitude - latlng.Ha + (this.longitude - latlng.Ga));
       // if (diff > 0.015) {
       // 	this.latitude = latlng.Ha;
@@ -108,16 +108,17 @@ export default {
     //     console.log(response);
     //   });
     // },
-    async getCurrentMasks() {
+    async getMasks() {
       window.map.setDraggable(false);
       // window.markers = [];
       this.maskMarkers = [];
       this.spinnerLoading = true;
       try {
+        // 요청 서버를 정부 서버로
         const res = await axios.get(
           // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
           // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
 
         const locPosition = new kakao.maps.LatLng(
@@ -136,7 +137,22 @@ export default {
         // 	alert('주변에 마스크 재고가 있는 편의점을 찾지 못했습니다');
         // }
       } catch (e) {
+        try {
+          const res = await axios.get("두희님 서버");
+          const locPosition = new kakao.maps.LatLng(
+            this.latitude,
+            this.longitude
+          );
+
+          window.map.setCenter(locPosition);
+
+          this.maskData = res.data;
+          this.displayMasks(this.maskData);
+          this.spinnerLoading = false;
+          window.map.setDraggable(true);
+        } catch (e) {}
         this.spinnerLoading = false;
+        window.map.setDraggable(true);
         alert("서버 접속이 많아서 재시도 해 주세요");
       }
     },
@@ -154,9 +170,19 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-        maskData[i].soldout
-          ? this.displaySoldout(maskData[i])
-          : this.displayMask(maskData[i]);
+        if (!maskData[i].sold_out) this.displaySoldout(maskData[i]);
+        this.displayMask(maskData[i]);
+        // if (maskData[i].type === "01") {
+
+        //   // 약국 띄우기
+        // } else if (maskData[i].type === "02") {
+        //   // 하나로 or 우체국
+        // } else {
+        //   // 하나로 or 우체국
+        // }
+        // maskData[i].soldout
+        //   ? this.displaySoldout(maskData[i])
+        //   : this.displayMask(maskData[i]);
         // if(i==0) this.displayMask(maskData[i]);
         // else{
         // 	maskData[i].soldout
@@ -188,15 +214,30 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
-      const imageSrc = "/img/stt.png", // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+      let imageSrc;
+      let imageSize;
+      let imageOption;
+
+      if (maskItem.type === "01") {
+        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      } else if (maskItem.type === "02") {
+        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      } else {
+        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      }
 
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
         imageSize,
         imageOption
       );
+
       const locPosition = new kakao.maps.LatLng(maskItem.lat, maskItem.lng);
 
       window.map.setLevel(5);
@@ -230,9 +271,9 @@ export default {
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
           maskOverlay +
           "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons earth"></div><a href="https://www.yogiyo.co.kr/mobile/#/' +
-          maskItem.yogiyo_id +
-          ' "class="link"><div class="font-in-overlay" style="right: 95px;">확인하기</div></div>' +
+          '                <div class=""><div class="smallicons earth"></div><a href="tel:' +
+          maskItem.tel +
+          ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.address +
           ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
@@ -304,7 +345,7 @@ export default {
       this.spinnerLoading = true;
       try {
         const res = await axios.get(
-          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
         this.maskData = res.data;
         for (let i = 0; i < this.maskData.length; i++) {
