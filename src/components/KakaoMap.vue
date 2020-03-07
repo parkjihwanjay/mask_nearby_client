@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
