@@ -1,5 +1,8 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; bottom: 60px;"
+  >
     <div class="logos">
       <img
         class="logoimg"
@@ -13,7 +16,10 @@
     >
       <img style="width: 44vh;" src="../assets/headtext5.png" />
     </div>
-    <div class="input-back-back" style="position: absolute; width: 100%; height: 100%; top: 35%;">
+    <div
+      class="input-back-back"
+      style="position: absolute; width: 100%; height: 100%; top: 35%;"
+    >
       <div class="input-backg">
         <div class="search-input" id="search-input" type="text" value>
           <input
@@ -31,13 +37,18 @@
         </div>
       </div>
     </div>
-    <div class="btn-container" style="width: 100%; position: absolute; bottom: 18%;">
+    <div
+      class="btn-container"
+      style="width: 100%; position: absolute; bottom: 18%;"
+    >
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
         class="btn btn--shockwave is-active"
         style="color:#ffffff; -webkit-text-fill-color: #ffffff;"
-      >현재 위치로 보기</button>
+      >
+        현재 위치로 보기
+      </button>
     </div>
     <Spinner v-if="spinnerLoading" />
     <Info />
@@ -132,6 +143,7 @@ export default {
     },
     async getMaskInfo() {
       try {
+        // 정부 서버 요청
         const res = await axios.get(
           `/?lat=${this.latitude}&lng=${this.longitude}`
         );

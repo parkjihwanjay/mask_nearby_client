@@ -1,5 +1,8 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
@@ -170,9 +173,19 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-        maskData[i].soldout
-          ? this.displaySoldout(maskData[i])
-          : this.displayMask(maskData[i]);
+        if (!maskData[i].sold_out) continue;
+        this.displayMask(maskData[i]);
+        // if (maskData[i].type === "01") {
+
+        //   // 약국 띄우기
+        // } else if (maskData[i].type === "02") {
+        //   // 하나로 or 우체국
+        // } else {
+        //   // 하나로 or 우체국
+        // }
+        // maskData[i].soldout
+        //   ? this.displaySoldout(maskData[i])
+        //   : this.displayMask(maskData[i]);
         // if(i==0) this.displayMask(maskData[i]);
         // else{
         // 	maskData[i].soldout
@@ -204,15 +217,30 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
-      const imageSrc = "/img/stt.png", // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+      let imageSrc;
+      let imageSize;
+      let imageOption;
+
+      if (maskItem.type === "01") {
+        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      } else if (maskItem.type === "02") {
+        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      } else {
+        imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      }
 
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
         imageSize,
         imageOption
       );
+
       const locPosition = new kakao.maps.LatLng(maskItem.lat, maskItem.lng);
 
       window.map.setLevel(5);
@@ -247,7 +275,7 @@ export default {
           maskOverlay +
           "<div class='find-address'>" +
           '                <div class=""><div class="smallicons earth"></div><a href="https://www.yogiyo.co.kr/mobile/#/' +
-          maskItem.yogiyo_id +
+          maskItem.tel +
           ' "class="link"><div class="font-in-overlay" style="right: 95px;">확인하기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.address +
