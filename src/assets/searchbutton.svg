@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="137" height="137" viewBox="0 0 137 137">
+    <defs>
+        <linearGradient id="prefix__linear-gradient" x1="-.194" x2=".948" y1="-.051" y2=".908" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset=".419" stop-color="#a6e1f0"/>
+            <stop offset=".635" stop-color="#82d5e9"/>
+            <stop offset=".852" stop-color="#64d0de"/>
+            <stop offset=".936" stop-color="#56cee2"/>
+            <stop offset="1" stop-color="#4bcde5"/>
+        </linearGradient>
+    </defs>
+    <g id="prefix__Group_24" data-name="Group 24" transform="translate(-119 -375)">
+        <g id="prefix__Group_23" data-name="Group 23">
+            <circle id="prefix__Ellipse_15" cx="68.5" cy="68.5" r="68.5" data-name="Ellipse 15" transform="translate(119 375)"/>
+            <g id="prefix__Group_22" data-name="Group 22" transform="translate(0 17)">
+                <text id="prefix__현재_위치로_확인하기" data-name="현재 위치로 확인하기" transform="translate(188 441)" style="font-size:14px;font-family:NanumGothicExtraBold,Nanum Gothic;fill:#fff">
+                    <tspan x="-34.86" y="0">현재 위치로</tspan><tspan x="-26.32" y="16">확인하기</tspan>
+                </text>
+                <path id="prefix__ic_pin_drop_24px" d="M22.478 10.067a8.067 8.067 0 0 0-16.133 0c0 6.05 8.067 14.789 8.067 14.789s8.066-8.739 8.066-14.789zm-10.755 0a2.689 2.689 0 1 1 2.689 2.689 2.7 2.7 0 0 1-2.69-2.689zM5 26.2v2.689h18.822V26.2z" transform="translate(173.589 390.556)" style="fill:#fff"/>
+            </g>
+        </g>
+    </g>
+</svg>

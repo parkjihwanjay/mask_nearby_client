@@ -118,7 +118,9 @@ export default {
       level: 3 // 지도의 확대 레벨
     };
     window.map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    // 지도 축소 제한
     // window.map.setMaxLevel(5);
+
     // this.soldoutMarker = [];
     // window.soldoutMarker = [];
     // window.markers = [];
@@ -173,11 +175,7 @@ export default {
       this.spinnerLoading = true;
       try {
         // 요청 서버를 정부 서버로
-        const res = await axios.get(
-          // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
-          // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `?lat=${this.latitude}&lng=${this.longitude}`
-        );
+        const res = await axios.get();
 
         const locPosition = new kakao.maps.LatLng(
           this.latitude,
@@ -196,7 +194,10 @@ export default {
         // }
       } catch (e) {
         try {
-          const res = await axios.get("두희님 서버");
+          // const res = await axios.get("두희님 서버");
+          const res = await axios.get(
+            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
+          );
           const locPosition = new kakao.maps.LatLng(
             this.latitude,
             this.longitude
@@ -231,15 +232,6 @@ export default {
         if (maskData[i].sold_out) continue;
 
         this.displayMask(maskData[i]);
-        // maskData[i].soldout
-        //   ? this.displaySoldout(maskData[i])
-        //   : this.displayMask(maskData[i]);
-        // if(i==0) this.displayMask(maskData[i]);
-        // else{
-        // 	maskData[i].soldout
-        // 		? this.displaySoldout(maskData[i])
-        // 		: this.displayMask(maskData[i]);
-        // }
       }
     },
     displaySoldout(maskItem) {
@@ -394,27 +386,27 @@ export default {
 
         window.map.setCenter(locPosition);
 
-        await this.getMaskInfo();
-      }
-    },
-    async getMaskInfo() {
-      this.maskMarkers = [];
-      this.spinnerLoading = true;
-      try {
-        const res = await axios.get(
-          `?lat=${this.latitude}&lng=${this.longitude}`
-        );
-        this.maskData = res.data;
-        for (let i = 0; i < this.maskData.length; i++) {
-          if (!this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
-          else this.displayMask(this.maskData[i]);
-        }
-        this.spinnerLoading = false;
-      } catch (e) {
-        this.spinnerLoading = false;
-        alert("서버 접속이 많아서 재시도 해 주세요");
+        await this.getMasks();
       }
     }
+    // async getMaskInfo() {
+    //   this.maskMarkers = [];
+    //   this.spinnerLoading = true;
+    //   try {
+    //     const res = await axios.get(
+    //       `?lat=${this.latitude}&lng=${this.longitude}`
+    //     );
+    //     this.maskData = res.data;
+    //     for (let i = 0; i < this.maskData.length; i++) {
+    //       if (!this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
+    //       else this.displayMask(this.maskData[i]);
+    //     }
+    //     this.spinnerLoading = false;
+    //   } catch (e) {
+    //     this.spinnerLoading = false;
+    //     alert("서버 접속이 많아서 재시도 해 주세요");
+    //   }
+    // }
   }
 };
 </script>

@@ -3,7 +3,7 @@
     <div
       v-show="$route.path === '/map'"
       class="loadtogether"
-      style="position: absolute; bottom:18%; width: 100%;"
+      style="position: absolute; bottom:22%; width: 100%;"
     >
       <div class="loader"></div>
       <div
@@ -21,7 +21,7 @@
     <div
       v-show="$route.path === '/'"
       class="loadtogether"
-      style="position: absolute; bottom: 9%; width: 100%;"
+      style="position: absolute; bottom: 10%; width: 100%;"
     >
       <div class="loader"></div>
       <div
@@ -144,6 +144,10 @@ export default {
     transform: rotate(360deg);
   }
 }
-
+@media (max-width: 768px) and (max-height: 700px) {
+  .loadtogether {
+    bottom: ;
+  }
+}
 /* spinner */
 </style>
