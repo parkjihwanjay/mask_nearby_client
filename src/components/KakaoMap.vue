@@ -175,14 +175,6 @@ export default {
       for (let i = 0; i < maskData.length; i++) {
         if (!maskData[i].sold_out) this.displaySoldout(maskData[i]);
         this.displayMask(maskData[i]);
-        // if (maskData[i].type === "01") {
-
-        //   // 약국 띄우기
-        // } else if (maskData[i].type === "02") {
-        //   // 하나로 or 우체국
-        // } else {
-        //   // 하나로 or 우체국
-        // }
         // maskData[i].soldout
         //   ? this.displaySoldout(maskData[i])
         //   : this.displayMask(maskData[i]);
