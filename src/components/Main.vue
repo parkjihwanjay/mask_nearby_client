@@ -18,7 +18,7 @@
     </div>-->
     <div class="yearcheck" style="width: 100%; font-size: 12px; position: relative; bottom: 14%;">
       <template v-if="birthDate.length">
-        <div>{{birthDate}}생 이신 분은</div>
+        <div>{{birthDate}}년생 이신 분은</div>
         <div style="color:#006ecb; font-weight: bold;">{{buyPossible}}</div>
       </template>
       <template v-else>
@@ -109,10 +109,16 @@ export default {
     buyPossible() {
       let today = new Date().getDay();
       // today = 2;
-      if (!today || today === 6) return "구매하실 수 있습니다";
-      if (today === this.birthDate[3] || today === (this.birthDate[3] + 5)[1])
+      today = String(today);
+      // console.log(this.birthDate[3]);
+      if (today === "0" || today === "6") return "구매하실 수 있습니다";
+      if (
+        today === this.birthDate[3] ||
+        today === String(Number(this.birthDate[3]) + 5)[1]
+      ) {
+        // console.log(String(Number(this.birthDate[3]) + 5)[1]);
         return "구매하실 수 있습니다";
-      else return "구매하실 수 없습니다";
+      } else return "구매하실 수 없습니다";
     }
   },
   methods: {

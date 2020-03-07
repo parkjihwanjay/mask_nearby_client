@@ -97,9 +97,10 @@
               v-model="birthDate"
             >
               <option value="선택해주세요" selected="selected">선택해주세요</option>
-              <option value="1996">1996</option>
+              <option v-for="date in dateList" :value="date">{{date}}</option>
+              <!-- <option value="1996">1996</option>
               <option value="1997">1997</option>
-              <option value="1998">1998</option>
+              <option value="1998">1998</option>-->
             </select>
             <button
               @click="clickButton"
@@ -125,12 +126,15 @@ export default {
   },
   data() {
     return {
-      birthDate: "선택해주세요"
+      birthDate: "선택해주세요",
+      dateList: []
     };
   },
   props: ["showInfoModal", "showDateModal"],
   created() {
-    console.log(this.showInfoModal, this.showDateModal);
+    for (let i = 2003; i >= 1900; i--) {
+      this.dateList.push(String(i));
+    }
   }
 };
 </script>
