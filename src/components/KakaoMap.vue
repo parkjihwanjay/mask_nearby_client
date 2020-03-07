@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
@@ -121,7 +118,7 @@ export default {
         const res = await axios.get(
           // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
           // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `/?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
 
         const locPosition = new kakao.maps.LatLng(
@@ -348,7 +345,7 @@ export default {
       this.spinnerLoading = true;
       try {
         const res = await axios.get(
-          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
         this.maskData = res.data;
         for (let i = 0; i < this.maskData.length; i++) {
