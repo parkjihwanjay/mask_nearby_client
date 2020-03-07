@@ -170,7 +170,7 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-        if (!maskData[i].sold_out) this.displaySoldout(maskData[i]);
+        if (!maskData[i].soldout) this.displaySoldout(maskData[i]);
         this.displayMask(maskData[i]);
         // if (maskData[i].type === "01") {
 
