@@ -274,9 +274,9 @@ export default {
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
           maskOverlay +
           "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons earth"></div><a href="https://www.yogiyo.co.kr/mobile/#/' +
+          '                <div class=""><div class="smallicons earth"></div><a href="tel:' +
           maskItem.tel +
-          ' "class="link"><div class="font-in-overlay" style="right: 95px;">확인하기</div></div>' +
+          ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.address +
           ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
