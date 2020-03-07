@@ -118,7 +118,7 @@ export default {
         const res = await axios.get(
           // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
           // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `/?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
 
         const locPosition = new kakao.maps.LatLng(
@@ -170,9 +170,20 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-        maskData[i].soldout
-          ? this.displaySoldout(maskData[i])
-          : this.displayMask(maskData[i]);
+        if (maskData[i].soldout) this.displaySoldout(maskData[i]);
+        else this.displayMask(maskData[i]);
+
+        // if (maskData[i].type === "01") {
+
+        //   // 약국 띄우기
+        // } else if (maskData[i].type === "02") {
+        //   // 하나로 or 우체국
+        // } else {
+        //   // 하나로 or 우체국
+        // }
+        // maskData[i].soldout
+        //   ? this.displaySoldout(maskData[i])
+        //   : this.displayMask(maskData[i]);
         // if(i==0) this.displayMask(maskData[i]);
         // else{
         // 	maskData[i].soldout
@@ -207,12 +218,30 @@ export default {
       const imageSrc = "/img/stt.png", // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      // let imageSrc;
+      // let imageSize;
+      // let imageOption;
+
+      // if (maskItem.type === "01") {
+      //   imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+      //   imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+      //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      // } else if (maskItem.type === "02") {
+      //   imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+      //   imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+      //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      // } else {
+      //   imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
+      //   imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+      //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      // }
 
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
         imageSize,
         imageOption
       );
+
       const locPosition = new kakao.maps.LatLng(maskItem.lat, maskItem.lng);
 
       window.map.setLevel(5);
@@ -227,6 +256,7 @@ export default {
       const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
+        console.log(maskItem);
         const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
@@ -246,9 +276,9 @@ export default {
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
           maskOverlay +
           "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons earth"></div><a href="https://www.yogiyo.co.kr/mobile/#/' +
-          maskItem.yogiyo_id +
-          ' "class="link"><div class="font-in-overlay" style="right: 95px;">확인하기</div></div>' +
+          '                <div class=""><div class="smallicons earth"></div><a href="tel:' +
+          maskItem.tel +
+          ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.address +
           ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
@@ -320,7 +350,7 @@ export default {
       this.spinnerLoading = true;
       try {
         const res = await axios.get(
-          `/mask?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
         this.maskData = res.data;
         for (let i = 0; i < this.maskData.length; i++) {

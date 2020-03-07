@@ -148,8 +148,9 @@ export default {
     },
     async getMaskInfo() {
       try {
+        // 정부 서버 요청
         const res = await axios.get(
-          `/?lat=${this.latitude}&lng=${this.longitude}`
+          `?lat=${this.latitude}&lng=${this.longitude}`
         );
         this.spinnerLoading = false;
         this.$router.push({
@@ -164,7 +165,7 @@ export default {
       } catch (e) {
         try {
           const res = await axios.get(
-            `/?lat=${this.latitude}&lng=${this.longitude}`
+            `?lat=${this.latitude}&lng=${this.longitude}`
           );
           this.spinnerLoading = false;
           this.showLocButton = !this.showLocButton;
