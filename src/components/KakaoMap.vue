@@ -229,23 +229,9 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-<<<<<<< HEAD
         if (maskData[i].sold_out) continue;
 
         this.displayMask(maskData[i]);
-=======
-        if (!maskData[i].sold_out) this.displaySoldout(maskData[i]);
-        this.displayMask(maskData[i]);
-        // maskData[i].soldout
-        //   ? this.displaySoldout(maskData[i])
-        //   : this.displayMask(maskData[i]);
-        // if(i==0) this.displayMask(maskData[i]);
-        // else{
-        // 	maskData[i].soldout
-        // 		? this.displaySoldout(maskData[i])
-        // 		: this.displayMask(maskData[i]);
-        // }
->>>>>>> 5cc67439b92cf23623f94ae5b8ce1ded6bedc329
       }
     },
     displaySoldout(maskItem) {
