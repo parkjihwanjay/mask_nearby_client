@@ -1,6 +1,6 @@
 <template>
   <div class="topmodal">
-    <div class="modal" style="display: none;">
+    <div class="modal" v-if="showInfoModal">
       <div class="modal__overlay"></div>
       <!-- <div class="modal__content"> -->
       <div class="modal__content">
@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="modal2">
+    <div class="modal2" v-if="showDateModal">
       <div class="modal__overlay"></div>
       <!-- <div class="modal__content"> -->
       <div class="modal__content">
@@ -86,20 +86,24 @@
             class="modal-body__text"
             style="position: relative; left: 5px; bottom: 10px; width: 260px;"
           >
-            <select
-              id="selectoption"
-              style="position: absolute; border-radius: 7px; border: solid; border-width: 1px; border-color: #7ed4e7; width: 180px; height: 38px; top: 35px; left: 15px; background-color: #ffffff; font-size: 11px; padding-left: 6px;"
-              name="year"
-            >
-              <option value="선택해주세요" selected="selected">선택해주세요</option>
-              <option value="바나나">바나나</option>
-              <option value="사과">사과</option>
-            </select>
             <img
               src="../assets/down-arrow.png"
               style="z-index: 0; position: relative; left: 175px; top: 30px; width: 10px;"
             />
+            <select
+              id="selectoption"
+              style="position: absolute; border-radius: 7px; border: solid; border-width: 1px; border-color: #7ed4e7; width: 180px; height: 38px; top: 35px; left: 15px; background-color: rgba(255,255,255,0); font-size: 11px; padding-left: 8px;"
+              name="year"
+              v-model="birthDate"
+            >
+              <option value="선택해주세요" selected="selected">선택해주세요</option>
+              <option v-for="date in dateList" :value="date">{{date}}</option>
+              <!-- <option value="1996">1996</option>
+              <option value="1997">1997</option>
+              <option value="1998">1998</option>-->
+            </select>
             <button
+              @click="clickButton"
               style="position: relative; left: 49px; top: -10px; width: 113px;
   height: 35px;
   border-radius: 19px;
@@ -115,7 +119,23 @@
 <script>
 export default {
   name: "Modal",
-  methods: {}
+  methods: {
+    clickButton() {
+      this.$emit("clickButton", this.birthDate);
+    }
+  },
+  data() {
+    return {
+      birthDate: "선택해주세요",
+      dateList: []
+    };
+  },
+  props: ["showInfoModal", "showDateModal"],
+  created() {
+    for (let i = 2003; i >= 1900; i--) {
+      this.dateList.push(String(i));
+    }
+  }
 };
 </script>
 
@@ -130,5 +150,14 @@ export default {
   text-align: left;
   /* padding: 0; */
   /* padding-inline-start: 30px; */
+}
+select::-ms-expand {
+  display: none;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
 }
 </style>
