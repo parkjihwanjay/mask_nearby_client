@@ -12,7 +12,7 @@
   z-index: 99;
 }
 .search-input {
-  border: solid 1px #006ecb;
+  /* border: solid 1px #006ecb; */
   width: 90vw;
   height: 7vh;
   max-height: 50px;
