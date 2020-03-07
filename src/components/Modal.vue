@@ -13,7 +13,7 @@
 
         <div class="modal-header__subtitle">주변 편의점 마스크 재고현황을 확인해보세요!</div>
       </div>
-      <div class="modal-body" style="height: 320px;">
+      <div class="modal-body" style="height: 343px;">
         <!-- <div class="modal-body__img">
 					<img class="img" src="../assets/modalList.png" alt="목록" />
         </div>-->
@@ -22,7 +22,10 @@
           style="position: relative; left: 5px; bottom: 10px; width: 260px;"
         >
           <ul>
-            <li>현재 등록된 모든 편의점에 재고가 없습니다.</li>
+            <li>
+              현재 등록된 모든 편의점에 재고가 없습니다.
+              <br />빠른 시일 내에 공적마스크 재고 현황을 추가하겠습니다.
+            </li>
             <li>
               재고현황은 11시-23시 사이에 확인하실 수
               <br />있습니다.
