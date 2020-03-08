@@ -212,10 +212,11 @@ export default {
           this.displayMasks(this.maskData);
           this.spinnerLoading = false;
           window.map.setDraggable(true);
-        } catch (e) {}
-        this.spinnerLoading = false;
-        window.map.setDraggable(true);
-        alert("서버 접속이 많아서 재시도 해 주세요");
+        } catch (e) {
+          this.spinnerLoading = false;
+          window.map.setDraggable(true);
+          alert("서버 접속이 많아서 재시도 해 주세요");
+        }
       }
     },
     maskInfo(masks) {

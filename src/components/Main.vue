@@ -268,11 +268,12 @@ export default {
               longitude: this.longitude
             }
           });
-        } catch (e) {}
-        this.showLocButton = !this.showLocButton;
-        this.spinnerLoading = false;
-        alert("서버 접속이 많아서 재시도 해 주세요");
-        console.log(e);
+        } catch (e) {
+          this.showLocButton = !this.showLocButton;
+          this.spinnerLoading = false;
+          alert("서버 접속이 많아서 재시도 해 주세요");
+          console.log(e);
+        }
       }
     }
   }
