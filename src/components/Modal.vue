@@ -17,7 +17,7 @@
 
           <div class="modal-header__subtitle">마스크 공적 판매처 재고현황을 확인해보세요!</div>
         </div>
-        <div class="modal-body" style="height: 343px;">
+        <div class="modal-body">
           <!-- <div class="modal-body__img">
 					<img class="img" src="../assets/modalList.png" alt="목록" />
           </div>-->

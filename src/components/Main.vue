@@ -23,11 +23,11 @@
     >
       <template v-if="birthDate.length">
         <div>{{ birthDate }}년생 이신 분은</div>
-        <div style="color:#006ecb; font-weight: bold;">{{ buyPossible }}</div>
+        <div style="color:#006ecb; font-size:14px; font-weight: bold;">{{ buyPossible }}</div>
       </template>
       <template v-else>
         <div>마스크 5부제에 따른</div>
-        <div style="color:#006ecb; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
+        <div style="color:#006ecb; font-size:14px; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
       </template>
       <div
         ref="check"
@@ -116,7 +116,6 @@ export default {
     buyPossible() {
       let today = new Date().getDay();
       // today = 2;
-      today = 1;
       today = String(today);
       let notes = "";
       console.log(this.birthDate[3]);

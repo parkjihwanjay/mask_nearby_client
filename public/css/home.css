@@ -334,16 +334,13 @@ body {
   position: absolute;
   top: 35px;
 }
-.phone{
+.phone {
   background-image: url(../img/phone.png);
   background-size: 100%;
   /* position: relative; */
-<<<<<<< HEAD
-  left: -80px;
-=======
-  left: -113px;
->>>>>>> d45febf77c11a430844e1b82cbb6ac66d30954b5
-  position: absolute;
+  <<<<<<<headleft: -80px;
+  =======left: -113px;
+  >>>>>>>d45febf77c11a430844e1b82cbb6ac66d30954b5position: absolute;
   top: 35px;
 }
 .menu_selected {
@@ -532,6 +529,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .search-input2::-webkit-input-placeholder {
   padding-left: 20px;
@@ -539,6 +538,7 @@ body {
 .search-input-in2 {
   width: 90%;
   height: 80%;
+  padding-left: 5px;
   border-radius: 24px;
   font-family: "Nanum Gothic", sans-serif;
   font-size: 15px;
