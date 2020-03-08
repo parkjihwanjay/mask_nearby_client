@@ -339,6 +339,14 @@ body {
   position: absolute;
   top: 35px;
 }
+.phone{
+  background-image: url(../img/phone.png);
+  background-size: 100%;
+  /* position: relative; */
+  left: -113px;
+  position: absolute;
+  top: 35px;
+}
 .menu_selected {
   opacity: 0.3;
 }

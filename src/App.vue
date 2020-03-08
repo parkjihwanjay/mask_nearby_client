@@ -1,6 +1,9 @@
 <template>
-  <div id="app" style="height: 100%; background-color: #ffffff; overflow: hidden;">
-    <Header v-show="$route.path==='/map'"></Header>
+  <div
+    id="app"
+    style="height: 100%; background-color: #ffffff; overflow: hidden;"
+  >
+    <Header v-show="$route.path === '/map'"></Header>
     <router-view @checkDate="checkDate" :birthDate="birthDate"></router-view>
     <Modal
       @closeModal="closeModal"
