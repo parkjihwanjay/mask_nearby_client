@@ -116,7 +116,7 @@ export default {
     };
     window.map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
     // 지도 축소 제한
-    // window.map.setMaxLevel(5);
+    window.map.setMaxLevel(5);
 
     // this.soldoutMarker = [];
     // window.soldoutMarker = [];

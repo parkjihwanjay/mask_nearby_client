@@ -111,7 +111,6 @@ export default {
       let today = new Date().getDay();
       // today = 2;
       today = String(today);
-      // console.log(this.birthDate[3]);
       if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
