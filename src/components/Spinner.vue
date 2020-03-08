@@ -21,7 +21,7 @@
     <div
       v-show="$route.path === '/'"
       class="loadtogether"
-      style="position: absolute; bottom: 10%; width: 100%;"
+      style="position: absolute; bottom: 18%; width: 100%;"
     >
       <div class="loader"></div>
       <div
@@ -145,9 +145,6 @@ export default {
   }
 }
 @media (max-width: 768px) and (max-height: 700px) {
-  .loadtogether {
-    bottom: 7% !important;
-  }
 }
 /* spinner */
 </style>

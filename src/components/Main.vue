@@ -393,6 +393,9 @@ export default {
 }
 
 @media (max-width: 768px) and (max-height: 700px) {
+  .loadtogether {
+    bottom: 7% !important;
+  }
   .input-back-back {
     bottom: 11vh;
   }
