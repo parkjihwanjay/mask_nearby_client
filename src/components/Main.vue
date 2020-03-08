@@ -1,15 +1,12 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; bottom: 0px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 0px;">
     <!-- <div style="width: 80vw; max-width: 700px;">
       <img class="questionmark" style="position: relative; width: 25px; top: 10px; left: -10px;" src="../assets/qms.png" />
     </div>-->
     <div class="logos">
       <img
         class="logoimg"
-        style="width: 40vh; position: relative; bottom: 3vh;"
+        style="width: 40vh; position: relative; bottom: 2.5vh;"
         src="../assets/horizontal.png"
       />
     </div>
@@ -21,25 +18,21 @@
     </div>-->
     <div
       class="yearcheck"
-      style="width: 100%; font-size: 12px; position: relative; bottom: 14%;"
+      @click="checkDate"
+      style="width: 100%; font-size: 12px; position: relative; top: -13%; height: 50px; z-index: 5;"
     >
       <template v-if="birthDate.length">
         <div>{{ birthDate }}년생 이신 분은</div>
-        <div style="color:#006ecb; font-weight: bold;">{{ buyPossible }}</div>
+        <div style="color:#006ecb; font-size:14px; font-weight: bold;">{{ buyPossible }}</div>
       </template>
       <template v-else>
         <div>마스크 5부제에 따른</div>
-        <div style="color:#006ecb; font-weight: bold;">
-          오늘의 구매 가능 여부를 확인해보세요!
-        </div>
+        <div style="color:#006ecb; font-size:14px; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
       </template>
       <div
         ref="check"
-        @click="checkDate"
         style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb;"
-      >
-        {{ checkComment }}
-      </div>
+      >{{ checkComment }}</div>
       <img
         style="position: relative; width: 11px; top: 10px;display:inline;"
         src="../assets/reload.png"
@@ -47,7 +40,7 @@
     </div>
     <div
       class="input-back-back"
-      style="position: absolute; width: 100%; height: 100%; top: 35%;"
+      style="position: absolute; width: 100%; height: 100%; top: 37%; z-index: 0;"
     >
       <div class="input-backg">
         <div
@@ -72,10 +65,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="btn-container"
-      style="width: 100%; position: absolute; bottom: 22%;"
-    >
+    <div class="btn-container" style="width: 100%; position: absolute; bottom: 17%;">
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
@@ -100,6 +90,7 @@ import hideVirtualKeyboard from "hide-virtual-keyboard";
 import axios from "axios";
 import Spinner from "./Spinner.vue";
 import Info from "./Info.vue";
+
 export default {
   name: "Main",
   data() {
@@ -126,7 +117,10 @@ export default {
       let today = new Date().getDay();
       // today = 2;
       today = String(today);
-      // console.log(this.birthDate[3]);
+      let notes = "";
+      console.log(this.birthDate[3]);
+
+      console.log(notes);
       if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
@@ -134,7 +128,28 @@ export default {
       ) {
         // console.log(String(Number(this.birthDate[3]) + 5)[1]);
         return "구매하실 수 있는 날 입니다.";
-      } else return "구매하실 수 없는 날 입니다.";
+      } else {
+        switch (Number(this.birthDate[3])) {
+          case 1:
+          case 6:
+            return (notes = "월요일이나 주말에 구매해주세요");
+          case 2:
+          case 7:
+            return (notes = "화요일이나 주말에 구매해주세요");
+          case 3:
+          case 8:
+            return (notes = "수요일이나 주말에 구매해주세요");
+          case 4:
+          case 9:
+            return (notes = "목요일이나 주말에 구매해주세요");
+          case 5:
+          case 0:
+            return (notes = "금요일이나 주말에 구매해주세요");
+          default:
+            console.log("에러임");
+        }
+        return "구매하실 수 없는 날 입니다." + notes;
+      }
     }
   },
   methods: {
@@ -208,13 +223,17 @@ export default {
     async getMaskInfo() {
       try {
         // 정부 서버 요청
-        const res = await axios.get();
+        const res = await axios.get(
+          "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
+        );
+        console.log("정부 서버 요청");
+        console.log(res.data.stores);
         this.spinnerLoading = false;
         this.$router.push({
           path: "/map",
           name: "KakaoMap",
           params: {
-            maskData: res.data,
+            maskData: res.data.stores,
             latitude: this.latitude,
             longitude: this.longitude
           }
@@ -377,6 +396,9 @@ export default {
     width: 6.4rem;
     line-height: 6.4rem;
   }
+  .btn-container {
+    bottom: 21% !important;
+  }
   .searchbtn {
     width: 6.4rem !important;
     line-height: 6.4rem;
@@ -398,10 +420,14 @@ export default {
   .devinfo {
     display: none;
   }
+  .yearcheck {
+    display: none;
+  }
   .input-back-back {
     top: 50% !important;
   }
   .logoimg {
+    width: 50vh !important;
     bottom: -8vh !important;
   }
   .toptext {

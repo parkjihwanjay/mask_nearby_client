@@ -5,7 +5,7 @@ module.exports = {
     open: process.platfrom === "darwin",
     host: "0.0.0.0",
     port: 6656,
-    https: false,
+    https: true,
     hotOnly: false,
     headers: {
       "Access-Control-Allow-Origin": "*",

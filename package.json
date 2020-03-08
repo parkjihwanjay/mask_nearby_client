@@ -9,8 +9,15 @@
     "lint": "vue-cli-service lint",
     "connect:1": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82",
     "connect:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115",
+    "connect:3": "ssh -i ./src/config/corona-elksha.pem ubuntu@13.209.49.249",
+    "connect:4": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.120.125",
+    "connect:5": "ssh -i ./src/config/corona-elksha.pem ubuntu@15.164.49.223",
     "deploy:1": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "deploy:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\""
+    "deploy:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "deploy:3": "ssh -i ./src/config/corona-elksha.pem ubuntu@13.209.49.249 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "deploy:4": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.120.125 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "deploy:5": "ssh -i ./src/config/corona-elksha.pem ubuntu@15.164.49.223 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "deploy:all": "yarn deploy:1 && yarn deploy:2 && yarn deploy:3 && yarn deploy:4 && yarn deploy:5"
   },
   "dependencies": {
     "axios": "^0.19.2",
