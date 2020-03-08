@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <div class="btn-container" style="width: 100%; position: absolute; bottom: 19%;">
+    <div class="btn-container" style="width: 100%; position: absolute; bottom: 21%;">
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
