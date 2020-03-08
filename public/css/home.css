@@ -464,7 +464,7 @@ body {
   font-size: 15px;
   position: absolute;
   top: 37px;
-  left : 38px;
+  left: 38px;
 }
 @media (max-width: 768px) {
   .nav {
@@ -548,6 +548,15 @@ body {
 }
 
 iframe {
+  display: flex;
+  justify-items: center;
   position: absolute;
   bottom: 0;
+  /* padding: 0 7%; */
+  margin: 0 auto;
+}
+
+.ads {
+  /* margin: 0 auto; */
+  width: 100%;
 }
