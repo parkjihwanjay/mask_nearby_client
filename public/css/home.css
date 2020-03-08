@@ -338,9 +338,8 @@ body {
   background-image: url(../img/phone.png);
   background-size: 100%;
   /* position: relative; */
-  <<<<<<<headleft: -80px;
-  =======left: -113px;
-  >>>>>>>d45febf77c11a430844e1b82cbb6ac66d30954b5position: absolute;
+  left: -46px;
+  position: absolute;
   top: 35px;
 }
 .menu_selected {
