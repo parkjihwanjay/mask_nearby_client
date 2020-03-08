@@ -110,7 +110,12 @@ export default {
     buyPossible() {
       let today = new Date().getDay();
       // today = 2;
+      today = 1;
       today = String(today);
+      let notes = "";
+      console.log(this.birthDate[3]);
+
+      console.log(notes);
       if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
@@ -118,7 +123,28 @@ export default {
       ) {
         // console.log(String(Number(this.birthDate[3]) + 5)[1]);
         return "구매하실 수 있는 날 입니다.";
-      } else return "구매하실 수 없는 날 입니다.";
+      } else {
+        switch (Number(this.birthDate[3])) {
+          case 1:
+          case 6:
+            return (notes = "월요일이나 주말에 구매해주세요");
+          case 2:
+          case 7:
+            return (notes = "화요일이나 주말에 구매해주세요");
+          case 3:
+          case 8:
+            return (notes = "수요일이나 주말에 구매해주세요");
+          case 4:
+          case 9:
+            return (notes = "목요일이나 주말에 구매해주세요");
+          case 5:
+          case 0:
+            return (notes = "금요일이나 주말에 구매해주세요");
+          default:
+            console.log("에러임");
+        }
+        return "구매하실 수 없는 날 입니다." + notes;
+      }
     }
   },
   methods: {
