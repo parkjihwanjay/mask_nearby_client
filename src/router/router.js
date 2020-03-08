@@ -10,14 +10,14 @@ const routes = [
   {
     path: "/map",
     name: "KakaoMap",
-    component: KakaoMap
-    // beforeEnter: (to, from, next) => {
-    // 	// console.log(new Date().getHours());
+    component: KakaoMap,
+    beforeEnter: (to, from, next) => {
+      // console.log(new Date().getHours());
 
-    // 	to.params.maskData ? next() : next('/');
-    // 	// if (!to.params.maskData) next('/');
-    // 	// else next();
-    // },
+      to.params.maskData ? next() : next("/");
+      // if (!to.params.maskData) next('/');
+      // else next();
+    }
   },
   {
     path: "*",

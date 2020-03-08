@@ -196,7 +196,7 @@ export default {
         try {
           // 두희님 서버
           const res = await axios.get(
-            `https://mask-api.com/?lat=${this.latitude}&lng=${this.longitude}`
+            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
           );
           const locPosition = new kakao.maps.LatLng(
             this.latitude,
@@ -259,11 +259,12 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
+      console.log("maskItem");
+      console.log(maskItem);
       let imageSrc;
       let imageSize;
       let imageOption;
-      console.log("maskItem");
-      console.log(maskItem.type);
+      // console.log(maskItem.type);
       if (maskItem.type === "01") {
         imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
