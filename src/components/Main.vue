@@ -77,7 +77,7 @@
     </div>
     <div
       class="btn-container"
-      style="width: 100%; position: absolute; bottom: 11%;"
+      style="width: 100%; position: absolute; bottom: 17%;"
     >
       <button
         v-show="showLocButton"
@@ -90,7 +90,7 @@
           style="position: absolute; width: 11rem; right: 0px;"
           src="../assets/searchbutton.png"
         />
-        현재 위치로 보기
+        치 위치로 보기
       </button>
     </div>
     <Spinner v-if="spinnerLoading" />
