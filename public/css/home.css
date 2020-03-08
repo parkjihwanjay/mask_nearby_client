@@ -318,16 +318,11 @@ body {
   width: 15px;
   height: 15px;
 }
-/* .phone {
-  background-image: url(../img/phone.png);
-  background-size: 100%;
-} */
-
 .pin {
   background-image: url(../img/pin.png);
   background-size: 100%;
   /* position: relative; */
-  left: -21px;
+  left: 17px;
   position: absolute;
   top: -2px;
 }
@@ -343,7 +338,7 @@ body {
   background-image: url(../img/phone.png);
   background-size: 100%;
   /* position: relative; */
-  left: -113px;
+  left: -80px;
   position: absolute;
   top: 35px;
 }
@@ -421,12 +416,12 @@ body {
   font-weight: bold;
   font-size: 16px;
   position: relative;
-  top: 5px;
+  top: -3px;
 }
 .font-in-overlay {
   color: #006ECB;
   position: relative;
-  right: 5px;
+  right: -32px;
   bottom: 5px;
 }
 .mask-total-num {

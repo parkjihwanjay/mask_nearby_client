@@ -1,15 +1,12 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; bottom: 0px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 0px;">
     <!-- <div style="width: 80vw; max-width: 700px;">
       <img class="questionmark" style="position: relative; width: 25px; top: 10px; left: -10px;" src="../assets/qms.png" />
     </div>-->
     <div class="logos">
       <img
         class="logoimg"
-        style="width: 40vh; position: relative; bottom: 3vh;"
+        style="width: 40vh; position: relative; bottom: 2.5vh;"
         src="../assets/horizontal.png"
       />
     </div>
@@ -21,7 +18,8 @@
     </div>-->
     <div
       class="yearcheck"
-      style="width: 100%; font-size: 12px; position: relative; bottom: 14%;"
+      @click="checkDate"
+      style="width: 100%; font-size: 12px; position: relative; top: -13%; height: 50px; z-index: 5;"
     >
       <template v-if="birthDate.length">
         <div>{{ birthDate }}년생 이신 분은</div>
@@ -29,17 +27,12 @@
       </template>
       <template v-else>
         <div>마스크 5부제에 따른</div>
-        <div style="color:#006ecb; font-weight: bold;">
-          오늘의 구매 가능 여부를 확인해보세요!
-        </div>
+        <div style="color:#006ecb; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
       </template>
       <div
         ref="check"
-        @click="checkDate"
         style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb;"
-      >
-        {{ checkComment }}
-      </div>
+      >{{ checkComment }}</div>
       <img
         style="position: relative; width: 11px; top: 10px;display:inline;"
         src="../assets/reload.png"
@@ -47,7 +40,7 @@
     </div>
     <div
       class="input-back-back"
-      style="position: absolute; width: 100%; height: 100%; top: 35%;"
+      style="position: absolute; width: 100%; height: 100%; top: 37%; z-index: 0;"
     >
       <div class="input-backg">
         <div
@@ -72,10 +65,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="btn-container"
-      style="width: 100%; position: absolute; bottom: 22%;"
-    >
+    <div class="btn-container" style="width: 100%; position: absolute; bottom: 17%;">
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
@@ -376,6 +366,9 @@ export default {
     width: 6.4rem;
     line-height: 6.4rem;
   }
+  .btn-container {
+    bottom: 21% !important;
+  }
   .searchbtn {
     width: 6.4rem !important;
     line-height: 6.4rem;
@@ -397,10 +390,14 @@ export default {
   .devinfo {
     display: none;
   }
+  .yearcheck {
+    display: none;
+  }
   .input-back-back {
     top: 50% !important;
   }
   .logoimg {
+    width: 50vh !important;
     bottom: -8vh !important;
   }
   .toptext {
