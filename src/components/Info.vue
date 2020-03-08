@@ -1,5 +1,6 @@
 <template>
-  <div
+  <div></div>
+  <!-- <div
     class="devinfo"
     style="width: 100%; display: flex; flex-direction: row; justify-content: flex-end; align-items: center; "
   >
@@ -14,7 +15,7 @@
       정보 출처:
       <img style="position: relative; width: 70px; right: 0px; top: 2px;" src="/img/yogiyo.png" />
     </div>
-  </div>
+  </div>  -->
 </template>
 
 <script>
