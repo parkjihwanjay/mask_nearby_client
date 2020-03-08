@@ -176,9 +176,15 @@ export default {
     },
     checkHour() {
       const hour = new Date().getHours();
-      if (10 > hour || hour >= 23) {
+      // if (10 > hour || hour >= 23) {
+      //   alert(
+      //     "공적판매처는 곧 추가 될 예정입니다 :) 구매 가능 요일을 확인해주세요!"
+      //   );
+      //   // return false;
+      // }
+      if (true) {
         alert(
-          "공적판매처는 곧 추가 될 예정입니다 :) 구매 가능 요일을 확인해주세요!"
+          "공적판매처는 화요일에 추가될 예정이며, 이를 위한 점검 작업을 거치고 있습니다. :) 구매 가능 요일을 확인해주세요!"
         );
         // return false;
       }
@@ -226,15 +232,15 @@ export default {
         console.log("정부 서버 요청");
         console.log(res.data.stores);
         this.spinnerLoading = false;
-        this.$router.push({
-          path: "/map",
-          name: "KakaoMap",
-          params: {
-            maskData: res.data.stores,
-            latitude: this.latitude,
-            longitude: this.longitude
-          }
-        });
+        // this.$router.push({
+        //   path: "/map",
+        //   name: "KakaoMap",
+        //   params: {
+        //     maskData: res.data.stores,
+        //     latitude: this.latitude,
+        //     longitude: this.longitude
+        //   }
+        // });
       } catch (e) {
         try {
           // 두희님 서버 요청
@@ -244,15 +250,15 @@ export default {
           );
           this.spinnerLoading = false;
           this.showLocButton = !this.showLocButton;
-          this.$router.push({
-            path: "/map",
-            name: "KakaoMap",
-            params: {
-              maskData: res.data,
-              latitude: this.latitude,
-              longitude: this.longitude
-            }
-          });
+          // this.$router.push({
+          //   path: "/map",
+          //   name: "KakaoMap",
+          //   params: {
+          //     maskData: res.data,
+          //     latitude: this.latitude,
+          //     longitude: this.longitude
+          //   }
+          // });
         } catch (e) {
           this.showLocButton = !this.showLocButton;
           this.spinnerLoading = false;
@@ -411,7 +417,7 @@ export default {
   }
 }
 
-@media (max-height: 400px) {
+@media (max-height: 450px) {
   .btn-container {
     display: none;
   }
