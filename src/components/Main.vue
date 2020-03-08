@@ -223,7 +223,8 @@ export default {
         try {
           // 두희님 서버 요청
           const res = await axios.get(
-            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
+            // `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`,
+            "http://mask-api.com/gov?lat=37.504318&lng=127.0341902"
           );
           this.spinnerLoading = false;
           this.showLocButton = !this.showLocButton;

@@ -6,13 +6,13 @@
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
-          <div class="search-input" id="search-input" type="text" value>
+          <div class="search-input2" id="search-input2" type="text" value>
             <input
               v-model="keyWord"
               @keyup.enter="search()"
               value
               type="text"
-              class="search-input-in"
+              class="search-input-in2"
               placeholder="목적지를 검색하세요"
             />
             <button class="search-btn" id="search-btn" @click="search()">
@@ -119,7 +119,7 @@ export default {
     };
     window.map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
     // 지도 축소 제한
-    // window.map.setMaxLevel(5);
+    // window.map.setMaxLevel(5);ㄴ
 
     // this.soldoutMarker = [];
     // window.soldoutMarker = [];
@@ -175,7 +175,10 @@ export default {
       this.spinnerLoading = true;
       try {
         // 요청 서버를 정부 서버로
-        const res = await axios.get();
+        const res = await axios.get(
+          "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
+        );
+        // console.log(res);
 
         const locPosition = new kakao.maps.LatLng(
           this.latitude,
@@ -196,7 +199,7 @@ export default {
         try {
           // 두희님 서버
           const res = await axios.get(
-            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
+            `https://mask-api.com/?lat=${this.latitude}&lng=${this.longitude}`
           );
           const locPosition = new kakao.maps.LatLng(
             this.latitude,
@@ -228,6 +231,8 @@ export default {
       return maskInfo;
     },
     displayMasks(maskData) {
+      console.log("maskdata");
+      console.log(maskData);
       for (let i = 0; i < maskData.length; i++) {
         if (maskData[i].sold_out) continue;
 
@@ -257,10 +262,12 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
+      console.log("maskItem");
+      console.log(maskItem);
       let imageSrc;
       let imageSize;
       let imageOption;
-
+      // console.log(maskItem.type);
       if (maskItem.type === "01") {
         imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
@@ -300,7 +307,7 @@ export default {
         // const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
-          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 73px; z-index: 9999;' +
+          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 73px; z-index: 999999999;' +
           long3 +
           '">' +
           '    <div class="info" style="">' +
