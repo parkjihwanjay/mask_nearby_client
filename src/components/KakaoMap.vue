@@ -44,55 +44,55 @@ export default {
       longitude: "",
       spinnerLoading: false,
       // 배포
-      // maskData: [],
+      maskData: [],
       //테스트 용
-      maskData: [
-        {
-          addr: "서울특별시 서대문구 모래내로 359 (홍은동)",
-          code: "11858524",
-          created_at: "2020/03/07 19:40:00",
-          lat: 37.5818747,
-          lng: 126.9358991,
-          name: "대유약국",
-          remain_cnt: 58,
-          sold_cnt: 292,
-          sold_out: false,
-          stock_cnt: 350,
-          stock_t: "10:44",
-          tel: "02-379-4416",
-          type: "01"
-        },
-        {
-          addr: "경상북도 구미시 1공단로 169 (공단동)",
-          code: "37847465",
-          created_at: "2020/03/07 19:40:00",
-          lat: 36.10233,
-          lng: 128.3818679,
-          name: "구미대형약국",
-          remain_cnt: 16,
-          sold_cnt: 434,
-          sold_out: false,
-          stock_cnt: 450,
-          stock_t: "11:15",
-          tel: "054-463-8275",
-          type: "02"
-        },
-        {
-          addr: "전라북도 익산시 선화로3길 16-10 (모현동1가)",
-          code: "35808705",
-          created_at: "2020/03/07 19:40:00",
-          lat: 35.9500036,
-          lng: 126.9388925,
-          name: "선한약국",
-          remain_cnt: 6,
-          sold_cnt: 444,
-          sold_out: false,
-          stock_cnt: 450,
-          stock_t: "11:14",
-          tel: "063-855-7713",
-          type: "03"
-        }
-      ],
+      // maskData: [
+      //   {
+      //     addr: "서울특별시 서대문구 모래내로 359 (홍은동)",
+      //     code: "11858524",
+      //     created_at: "2020/03/07 19:40:00",
+      //     lat: 37.5818747,
+      //     lng: 126.9358991,
+      //     name: "대유약국",
+      //     remain_cnt: 58,
+      //     sold_cnt: 292,
+      //     sold_out: false,
+      //     stock_cnt: 350,
+      //     stock_t: "10:44",
+      //     tel: "02-379-4416",
+      //     type: "01"
+      //   },
+      //   {
+      //     addr: "경상북도 구미시 1공단로 169 (공단동)",
+      //     code: "37847465",
+      //     created_at: "2020/03/07 19:40:00",
+      //     lat: 36.10233,
+      //     lng: 128.3818679,
+      //     name: "구미대형약국",
+      //     remain_cnt: 16,
+      //     sold_cnt: 434,
+      //     sold_out: false,
+      //     stock_cnt: 450,
+      //     stock_t: "11:15",
+      //     tel: "054-463-8275",
+      //     type: "02"
+      //   },
+      //   {
+      //     addr: "전라북도 익산시 선화로3길 16-10 (모현동1가)",
+      //     code: "35808705",
+      //     created_at: "2020/03/07 19:40:00",
+      //     lat: 35.9500036,
+      //     lng: 126.9388925,
+      //     name: "선한약국",
+      //     remain_cnt: 6,
+      //     sold_cnt: 444,
+      //     sold_out: false,
+      //     stock_cnt: 450,
+      //     stock_t: "11:14",
+      //     tel: "063-855-7713",
+      //     type: "03"
+      //   }
+      // ],
       //
       soldoutMarkers: [],
       maskMarkers: []
@@ -102,13 +102,13 @@ export default {
   },
   created() {
     // 배포 용
-    // this.maskData = this.$route.params.maskData;
-    // this.longitude = this.$route.params.longitude;
-    // this.latitude = this.$route.params.latitude;
+    this.maskData = this.$route.params.maskData;
+    this.longitude = this.$route.params.longitude;
+    this.latitude = this.$route.params.latitude;
 
     // test 용
-    this.latitude = 37.548236103794;
-    this.longitude = 127.026326090073;
+    // this.latitude = 37.548236103794;
+    // this.longitude = 127.026326090073;
   },
   mounted() {
     const mapContainer = this.$refs.map; // 지도를 표시할 div
