@@ -23,7 +23,7 @@
       <div
         class="yearcheck"
         @click="checkDate"
-        style="position:absolute; top: -28%; width: 100%; font-size: 12px; height: 50px; z-index: 5;"
+        style="position:absolute; top: -33%; width: 100%; font-size: 12px; height: 50px; z-index: 5;"
       >
         <template v-if="birthDate.length">
           <div>{{ birthDate }}년생 이신 분은</div>
@@ -396,12 +396,15 @@ export default {
   .input-back-back {
     bottom: 11vh;
   }
+  .input-backg {
+    top: 40px;
+  }
   .btn {
     width: 6.4rem;
     line-height: 6.4rem;
   }
   .btn-container {
-    bottom: 21% !important;
+    bottom: 19% !important;
   }
   .searchbtn {
     width: 6.4rem !important;
@@ -409,6 +412,9 @@ export default {
   }
   .toptext {
     bottom: 61.6vh !important;
+  }
+  .yearcheck {
+    top: -19% !important;
   }
   .loadtogether {
     bottom: 5% !important;
