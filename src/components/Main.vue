@@ -193,7 +193,7 @@ export default {
       const hour = new Date().getHours();
       if (10 > hour || hour >= 23) {
         alert(
-          "재고 현황은 11시에서 23시에만 제공되어 현재는 다 soldout으로 표시합니다! 위치 확인 후 아침에 이용해주세요 :)"
+          "공적판매처는 곧 추가 될 예정입니다 :) 구매 가능 요일을 확인해주세요!"
         );
         // return false;
       }
