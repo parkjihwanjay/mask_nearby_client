@@ -15,7 +15,7 @@
             </button>
           </div>
 
-          <div class="modal-header__subtitle">주변 편의점 마스크 재고현황을 확인해보세요!</div>
+          <div class="modal-header__subtitle">마스크 공적 판매처 재고현황을 확인해보세요!</div>
         </div>
         <div class="modal-body" style="height: 343px;">
           <!-- <div class="modal-body__img">
@@ -26,22 +26,8 @@
             style="position: relative; left: 5px; bottom: 10px; width: 260px;"
           >
             <ul>
-              <li>
-                현재 등록된 모든 편의점에 재고가 없습니다.
-                <br />빠른 시일 내에 공적마스크 재고 현황을 추가하겠습니다.
-              </li>
-              <li>
-                재고현황은 11시-23시 사이에 확인하실 수
-                <br />있습니다.
-              </li>
-              <li>
-                재고현황은 요기요가 제공하는 정보에 기반
-                <br />하고 있습니다.
-              </li>
-              <li>
-                마스크 재고현황 정보(약국, 마트 등)를 제공
-                <br />해주실 수 있는 관계자 분들은 메일주세요!
-              </li>
+              <li>내일(3/9일) 공적마스크 재고 현황이 추가 될 예정입니다.</li>
+              <li>출생연도로 구매 가능 여부를 확인해보시고, 구매하세요!</li>
               <li>
                 마스크 알리미는 코로나 알리미를 제작했던
                 <br />대학생 4명의 아이디어와 노력에 이두희님의
@@ -77,7 +63,7 @@
             </button>
           </div>
 
-          <div class="modal-header__subtitle">주변 편의점 마스크 재고현황을 확인해보세요!</div>
+          <div class="modal-header__subtitle">마스크 공적 판매처 재고현황을 확인해보세요!</div>
         </div>
         <div class="modal-body2" style>
           <!-- <div class="modal-body__img">

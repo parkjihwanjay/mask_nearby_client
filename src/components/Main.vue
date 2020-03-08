@@ -90,6 +90,7 @@ import hideVirtualKeyboard from "hide-virtual-keyboard";
 import axios from "axios";
 import Spinner from "./Spinner.vue";
 import Info from "./Info.vue";
+
 export default {
   name: "Main",
   data() {
@@ -116,7 +117,6 @@ export default {
       let today = new Date().getDay();
       // today = 2;
       today = String(today);
-      // console.log(this.birthDate[3]);
       if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
@@ -198,13 +198,17 @@ export default {
     async getMaskInfo() {
       try {
         // 정부 서버 요청
-        const res = await axios.get();
+        const res = await axios.get(
+          "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
+        );
+        console.log("정부 서버 요청");
+        console.log(res.data.stores);
         this.spinnerLoading = false;
         this.$router.push({
           path: "/map",
           name: "KakaoMap",
           params: {
-            maskData: res.data,
+            maskData: res.data.stores,
             latitude: this.latitude,
             longitude: this.longitude
           }
