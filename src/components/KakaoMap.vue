@@ -259,12 +259,10 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
-      console.log("maskItem");
-      console.log(maskItem);
       let imageSrc;
       let imageSize;
       let imageOption;
-      // console.log(maskItem.type);
+
       if (maskItem.type === "01") {
         imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
@@ -295,7 +293,7 @@ export default {
         map: window.map,
         position: locPosition,
         image: markerImage,
-        zIndex: 9
+        zIndex: 0
       });
       let long3;
       const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -304,7 +302,7 @@ export default {
         // const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
-          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 73px; z-index: 999999999;' +
+          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 76px; z-index: 9999;' +
           long3 +
           '">' +
           '    <div class="info" style="">' +
@@ -315,14 +313,17 @@ export default {
           '        <div class="body">' +
           '            <div class="desc">' +
           '                <div class="ellipsis">' +
-          "총 재고 현황" +
-          "</div>" +
-          '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
+          "총 재고 현황 : " +
           maskItem.remain_cnt +
+          "</div>" +
+          '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 5px; right: 86px;">' +
+          '<div class="cool" style="position: absolute; font-size: 12px; left: -85px; top: 15px;">재고 현황 업데이트 시간 : ' +
+          maskItem.stock_t +
+          "</div>" +
           "<div class='find-address'>" +
           '                <div class=""><div class="smallicons phone"></div><a href="tel:' +
           maskItem.tel +
-          ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
+          ' "class="link"><div class="font-in-overlay" style="right: 63px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.name +
           "," +
