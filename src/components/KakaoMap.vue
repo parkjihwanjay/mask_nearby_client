@@ -316,7 +316,7 @@ export default {
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
           maskItem.remain_cnt +
           "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons earth"></div><a href="tel:' +
+          '                <div class=""><div class="smallicons phone"></div><a href="tel:' +
           maskItem.tel +
           ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
