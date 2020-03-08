@@ -1,5 +1,8 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
@@ -196,7 +199,7 @@ export default {
         try {
           // 두희님 서버
           const res = await axios.get(
-            `https://mask-api.com/?lat=${this.latitude}&lng=${this.longitude}`
+            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
           );
           const locPosition = new kakao.maps.LatLng(
             this.latitude,
