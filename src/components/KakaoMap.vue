@@ -1,5 +1,8 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
@@ -209,10 +212,11 @@ export default {
           this.displayMasks(this.maskData);
           this.spinnerLoading = false;
           window.map.setDraggable(true);
-        } catch (e) {}
-        this.spinnerLoading = false;
-        window.map.setDraggable(true);
-        alert("서버 접속이 많아서 재시도 해 주세요");
+        } catch (e) {
+          this.spinnerLoading = false;
+          window.map.setDraggable(true);
+          alert("서버 접속이 많아서 재시도 해 주세요");
+        }
       }
     },
     maskInfo(masks) {
@@ -259,10 +263,12 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
+      console.log("maskItem");
+      console.log(maskItem);
       let imageSrc;
       let imageSize;
       let imageOption;
-
+      // console.log(maskItem.type);
       if (maskItem.type === "01") {
         imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
         imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
@@ -317,7 +323,7 @@ export default {
           maskItem.remain_cnt +
           "</div>" +
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 5px; right: 86px;">' +
-          '<div class="cool" style="position: absolute; font-size: 12px; left: -85px; top: 15px;">재고 현황 업데이트 시간 : ' +
+          '<div class="cool" style="position: absolute; font-size: 12px; left: -38px; top: 15px;">재고 현황 업데이트 시간 : ' +
           maskItem.stock_t +
           "</div>" +
           "<div class='find-address'>" +
