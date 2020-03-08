@@ -127,14 +127,14 @@ export default {
       // today = 2;
       today = String(today);
       // console.log(this.birthDate[3]);
-      if (today === "0" || today === "6") return "구매하실 수 있습니다";
+      if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
         today === String(Number(this.birthDate[3]) + 5)[1]
       ) {
         // console.log(String(Number(this.birthDate[3]) + 5)[1]);
-        return "구매하실 수 있습니다";
-      } else return "구매하실 수 없습니다";
+        return "구매하실 수 있는 날 입니다.";
+      } else return "구매하실 수 없는 날 입니다.";
     }
   },
   methods: {

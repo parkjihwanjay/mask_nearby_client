@@ -60,10 +60,10 @@
           class="modal-header"
           style="width: 220px; height: 60px; background-image: linear-gradient(306deg, #79d3e6 105%, #83d6e8 73%, #89d8e9 23%, #ffffff -5%);"
         >
-          <div class="modal-header__title" style="width: 220px; font-size: 13px;">
+          <div class="modal-header__title" style="width: 220px; font-size: 12px;">
             <div style="text-align: left; position: relative; bottom: 5px;">
-              오늘 마스크 구매
-              <br />가능 여부를 확인하세요!
+              오늘 마스크 구매가능 여부를
+              <br />확인하세요!
             </div>
             <button class="closeBtn" style="position: relative; padding-left: 0px; right: 40px;">
               <img
@@ -96,7 +96,7 @@
               name="year"
               v-model="birthDate"
             >
-              <option value="선택해주세요" selected="selected">선택해주세요</option>
+              <option value="선택해주세요" selected="selected">출생연도 선택하기</option>
               <option v-for="date in dateList" :value="date">{{date}}</option>
               <!-- <option value="1996">1996</option>
               <option value="1997">1997</option>
@@ -107,7 +107,9 @@
               style="position: relative; left: 49px; top: -10px; width: 113px;
   height: 35px;
   border-radius: 19px;
-  background-color: #7ed4e7; color: #ffffff;"
+  background-color: #7ed4e7; color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  "
             >확인하기</button>
           </div>
         </div>
