@@ -21,7 +21,6 @@
     </div>-->
     <div
       class="yearcheck"
-      @click="checkDate"
       style="width: 100%; font-size: 12px; position: relative; top: -13%; height: 50px; z-index: 5;"
     >
       <template v-if="birthDate.length">
@@ -37,12 +36,14 @@
         </div>
       </template>
       <div
+        @click="checkDate"
         ref="check"
         style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
       >
         {{ checkComment }}
       </div>
       <img
+        @click="checkDate"
         style="position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
         src="../assets/reload.png"
       />
@@ -76,7 +77,7 @@
     </div>
     <div
       class="btn-container"
-      style="width: 100%; position: absolute; bottom: 17%;"
+      style="width: 100%; position: absolute; bottom: 11%;"
     >
       <button
         v-show="showLocButton"
