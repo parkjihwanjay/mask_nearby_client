@@ -21,7 +21,7 @@
     </div>-->
     <div
       class="yearcheck"
-      style="width: 100%; font-size: 12px; position: relative; top: -13%; height: 50px; z-index: 5;"
+      style="width: 100%; font-size: 12px; margin-top:-88px; height: 50px; z-index: 5;"
     >
       <template v-if="birthDate.length">
         <div>{{ birthDate }}년생 이신 분은</div>
