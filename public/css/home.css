@@ -7,7 +7,7 @@
 }
 .input-backg {
   position: absolute;
-  top: 25px;
+  top: 30px;
   display: flex;
   z-index: 99;
 }
@@ -557,6 +557,11 @@ iframe {
 }
 
 .ads {
-  /* margin: 0 auto; */
-  width: 100%;
+  margin: 0 auto;
+  width: 320px;
+  position: absolute;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
