@@ -20,16 +20,10 @@
       <img style="width: 44vh;" src="../assets/headtext5.png" />
     </div>-->
     <div
-<<<<<<< HEAD
       class="boxing-home"
       style=" position:absolute; top: 35%; display:flex; flex-direction:column; width:100%; height: 200px; justify-content: space-between;"
-=======
-      class="yearcheck"
-      style="width: 100%; font-size: 12px; margin-top:-88px; height: 50px; z-index: 5;"
->>>>>>> 7fe1bfa2515752bbde18d1407304514c75568c55
     >
       <div
-<<<<<<< HEAD
         class="yearcheck"
         @click="checkDate"
         style="position:absolute; top: -40px;  width: 100%; font-size: 12px; height: 50px; z-index: 5;"
@@ -46,25 +40,6 @@
             오늘의 구매 가능 여부를 확인해보세요!
           </div>
         </template>
-=======
-        @click="checkDate"
-        ref="check"
-        style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
-      >
-        {{ checkComment }}
-      </div>
-      <img
-        @click="checkDate"
-        style="position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
-        src="../assets/reload.png"
-      />
-    </div>
-    <div
-      class="input-back-back"
-      style="position: absolute; width: 100%; height: 100%; top: 37%; z-index: 0;"
-    >
-      <div class="input-backg">
->>>>>>> 7fe1bfa2515752bbde18d1407304514c75568c55
         <div
           ref="check"
           style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
