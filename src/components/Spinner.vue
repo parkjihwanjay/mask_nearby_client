@@ -146,7 +146,7 @@ export default {
 }
 @media (max-width: 768px) and (max-height: 700px) {
   .loadtogether {
-    bottom: ;
+    bottom: 7% !important;
   }
 }
 /* spinner */
