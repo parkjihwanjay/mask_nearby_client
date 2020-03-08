@@ -323,7 +323,7 @@ export default {
           maskItem.remain_cnt +
           "</div>" +
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 5px; right: 86px;">' +
-          '<div class="cool" style="position: absolute; font-size: 12px; left: -85px; top: 15px;">재고 현황 업데이트 시간 : ' +
+          '<div class="cool" style="position: absolute; font-size: 12px; left: -38px; top: 15px;">재고 현황 업데이트 시간 : ' +
           maskItem.stock_t +
           "</div>" +
           "<div class='find-address'>" +

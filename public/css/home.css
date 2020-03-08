@@ -465,6 +465,7 @@ body {
   font-size: 15px;
   position: absolute;
   top: 37px;
+  left : 38px;
 }
 @media (max-width: 768px) {
   .nav {
