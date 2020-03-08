@@ -20,60 +20,60 @@
       <img style="width: 44vh;" src="../assets/headtext5.png" />
     </div>-->
     <div
-      class="yearcheck"
-      @click="checkDate"
-      style="width: 100%; font-size: 12px; position: relative; top: -13%; height: 50px; z-index: 5;"
+      class="boxing-home"
+      style=" position:absolute; top: 35%; display:flex; flex-direction:column; width:100%; height: 200px; justify-content: space-between;"
     >
-      <template v-if="birthDate.length">
-        <div>{{ birthDate }}년생 이신 분은</div>
-        <div style="color:#006ecb; font-size:14px; font-weight: bold;">
-          {{ buyPossible }}
-        </div>
-      </template>
-      <template v-else>
-        <div>마스크 5부제에 따른</div>
-        <div style="color:#006ecb; font-size:14px; font-weight: bold;">
-          오늘의 구매 가능 여부를 확인해보세요!
-        </div>
-      </template>
       <div
-        ref="check"
-        style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
+        class="yearcheck"
+        @click="checkDate"
+        style="position:absolute; top: -40px;  width: 100%; font-size: 12px; height: 50px; z-index: 5;"
       >
-        {{ checkComment }}
-      </div>
-      <img
-        style="position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
-        src="../assets/reload.png"
-      />
-    </div>
-    <div
-      class="input-back-back"
-      style="position: absolute; width: 100%; height: 100%; top: 37%; z-index: 0;"
-    >
-      <div class="input-backg">
+        <template v-if="birthDate.length">
+          <div>{{ birthDate }}년생 이신 분은</div>
+          <div style="color:#006ecb; font-size:14px; font-weight: bold;">
+            {{ buyPossible }}
+          </div>
+        </template>
+        <template v-else>
+          <div>마스크 5부제에 따른</div>
+          <div style="color:#006ecb; font-size:14px; font-weight: bold;">
+            오늘의 구매 가능 여부를 확인해보세요!
+          </div>
+        </template>
         <div
-          class="search-input"
-          style="width: 80vw; height: 6.5vh;"
-          id="search-input"
-          type="text"
-          value
+          ref="check"
+          style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
         >
-          <input
-            @keyup.enter="search()"
-            v-model="keyWord"
-            value
-            type="text"
-            class="search-input-in"
-            id="srch"
-            placeholder="목적지를 검색하세요"
-          />
-          <button @click="search()" class="search-btn" id="search-btn">
-            <img class="search-icon" src="../assets/qna.png" />
-          </button>
+          {{ checkComment }}
+        </div>
+        <img
+          style=" position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
+          src="../assets/reload.png"
+        />
+      </div>
+      <div
+        class="input-back-back"
+        style="š  margin-top: 300px; width: 100%;  z-index: 0;"
+      >
+        <div class="input-backg">
+          <div class="search-input" style="width: 80vw; " type="text" value>
+            <input
+              @keyup.enter="search()"
+              v-model="keyWord"
+              value
+              type="text"
+              class="search-input-in"
+              id="srch"
+              placeholder="목적지를 검색하세요"
+            />
+            <button @click="search()" class="search-btn" id="search-btn">
+              <img class="search-icon" src="../assets/qna.png" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
     <div
       class="btn-container"
       style="width: 100%; position: absolute; bottom: 17%;"
