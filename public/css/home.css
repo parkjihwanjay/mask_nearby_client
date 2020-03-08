@@ -318,16 +318,11 @@ body {
   width: 15px;
   height: 15px;
 }
-/* .phone {
-  background-image: url(../img/phone.png);
-  background-size: 100%;
-} */
-
 .pin {
   background-image: url(../img/pin.png);
   background-size: 100%;
   /* position: relative; */
-  left: -21px;
+  left: 17px;
   position: absolute;
   top: -2px;
 }
@@ -339,12 +334,13 @@ body {
   position: absolute;
   top: 35px;
 }
-.phone{
+.phone {
   background-image: url(../img/phone.png);
   background-size: 100%;
   /* position: relative; */
-  left: -113px;
-  position: absolute;
+  <<<<<<<headleft: -80px;
+  =======left: -113px;
+  >>>>>>>d45febf77c11a430844e1b82cbb6ac66d30954b5position: absolute;
   top: 35px;
 }
 .menu_selected {
@@ -401,7 +397,7 @@ body {
 }
 .close {
   background-image: url("/img/overclose.png");
-  z-index : 9;
+  z-index: 9;
 }
 .info .close:hover {
   cursor: pointer;
@@ -421,12 +417,12 @@ body {
   font-weight: bold;
   font-size: 16px;
   position: relative;
-  top: 5px;
+  top: -3px;
 }
 .font-in-overlay {
-  color: #006ECB;
+  color: #006ecb;
   position: relative;
-  right: 5px;
+  right: -32px;
   bottom: 5px;
 }
 .mask-total-num {
@@ -465,7 +461,7 @@ body {
 }
 .info .link {
   text-decoration: none;
-  color: #277BCF;
+  color: #277bcf;
   font-size: 15px;
   position: absolute;
   top: 37px;
@@ -481,6 +477,9 @@ body {
   }
   .inside-text {
     font-size: 18px;
+  }
+  .search-input-in2 {
+    width: 80%;
   }
   .search-input-in {
     width: 80%;
@@ -511,4 +510,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+*/
 
+.search-input2 {
+  /* border: solid 1px #006ecb; */
+  width: 90vw;
+  height: 7vh;
+  max-height: 50px;
+  border-radius: 40px;
+  /* border: solid 1px #006ecb; */
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  top: 43px;
+  z-index: 99;
+  background-color: #ffffff;
+  font-size: 15px;
+  font-family: "Nanum Gothic", sans-serif;
+  background-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.search-input2::-webkit-input-placeholder {
+  padding-left: 20px;
+}
+.search-input-in2 {
+  width: 90%;
+  height: 80%;
+  padding-left: 5px;
+  border-radius: 24px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  padding: 2px;
+}
