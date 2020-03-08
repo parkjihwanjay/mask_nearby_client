@@ -1,5 +1,8 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
@@ -40,7 +43,57 @@ export default {
       latitude: "",
       longitude: "",
       spinnerLoading: false,
+      // 배포
       maskData: [],
+      //테스트 용
+      // maskData: [
+      //   {
+      //     addr: "서울특별시 서대문구 모래내로 359 (홍은동)",
+      //     code: "11858524",
+      //     created_at: "2020/03/07 19:40:00",
+      //     lat: 37.5818747,
+      //     lng: 126.9358991,
+      //     name: "대유약국",
+      //     remain_cnt: 58,
+      //     sold_cnt: 292,
+      //     sold_out: false,
+      //     stock_cnt: 350,
+      //     stock_t: "10:44",
+      //     tel: "02-379-4416",
+      //     type: "01"
+      //   },
+      //   {
+      //     addr: "경상북도 구미시 1공단로 169 (공단동)",
+      //     code: "37847465",
+      //     created_at: "2020/03/07 19:40:00",
+      //     lat: 36.10233,
+      //     lng: 128.3818679,
+      //     name: "구미대형약국",
+      //     remain_cnt: 16,
+      //     sold_cnt: 434,
+      //     sold_out: false,
+      //     stock_cnt: 450,
+      //     stock_t: "11:15",
+      //     tel: "054-463-8275",
+      //     type: "02"
+      //   },
+      //   {
+      //     addr: "전라북도 익산시 선화로3길 16-10 (모현동1가)",
+      //     code: "35808705",
+      //     created_at: "2020/03/07 19:40:00",
+      //     lat: 35.9500036,
+      //     lng: 126.9388925,
+      //     name: "선한약국",
+      //     remain_cnt: 6,
+      //     sold_cnt: 444,
+      //     sold_out: false,
+      //     stock_cnt: 450,
+      //     stock_t: "11:14",
+      //     tel: "063-855-7713",
+      //     type: "03"
+      //   }
+      // ],
+      //
       soldoutMarkers: [],
       maskMarkers: []
       // overlays : [],
@@ -48,9 +101,14 @@ export default {
     };
   },
   created() {
+    // 배포 용
     this.maskData = this.$route.params.maskData;
     this.longitude = this.$route.params.longitude;
     this.latitude = this.$route.params.latitude;
+
+    // test 용
+    // this.latitude = 37.548236103794;
+    // this.longitude = 127.026326090073;
   },
   mounted() {
     const mapContainer = this.$refs.map; // 지도를 표시할 div
@@ -60,7 +118,9 @@ export default {
       level: 3 // 지도의 확대 레벨
     };
     window.map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-    window.map.setMaxLevel(5);
+    // 지도 축소 제한
+    // window.map.setMaxLevel(5);
+
     // this.soldoutMarker = [];
     // window.soldoutMarker = [];
     // window.markers = [];
@@ -115,11 +175,7 @@ export default {
       this.spinnerLoading = true;
       try {
         // 요청 서버를 정부 서버로
-        const res = await axios.get(
-          // `http://localhost:3000/mask?lat=${this.latitude}&lng=${this.longitude}`,
-          // `https://api.mask-nearby.com/mask?lat=${latlng.Ha}&lng=${latlng.Ga}`,
-          `?lat=${this.latitude}&lng=${this.longitude}`
-        );
+        const res = await axios.get();
 
         const locPosition = new kakao.maps.LatLng(
           this.latitude,
@@ -138,7 +194,10 @@ export default {
         // }
       } catch (e) {
         try {
-          const res = await axios.get("두희님 서버");
+          // 두희님 서버
+          const res = await axios.get(
+            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
+          );
           const locPosition = new kakao.maps.LatLng(
             this.latitude,
             this.longitude
@@ -170,26 +229,9 @@ export default {
     },
     displayMasks(maskData) {
       for (let i = 0; i < maskData.length; i++) {
-        if (maskData[i].soldout) this.displaySoldout(maskData[i]);
-        else this.displayMask(maskData[i]);
+        if (maskData[i].sold_out) continue;
 
-        // if (maskData[i].type === "01") {
-
-        //   // 약국 띄우기
-        // } else if (maskData[i].type === "02") {
-        //   // 하나로 or 우체국
-        // } else {
-        //   // 하나로 or 우체국
-        // }
-        // maskData[i].soldout
-        //   ? this.displaySoldout(maskData[i])
-        //   : this.displayMask(maskData[i]);
-        // if(i==0) this.displayMask(maskData[i]);
-        // else{
-        // 	maskData[i].soldout
-        // 		? this.displaySoldout(maskData[i])
-        // 		: this.displayMask(maskData[i]);
-        // }
+        this.displayMask(maskData[i]);
       }
     },
     displaySoldout(maskItem) {
@@ -215,26 +257,25 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
-      const imageSrc = "/img/stt.png", // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      // let imageSrc;
-      // let imageSize;
-      // let imageOption;
+      let imageSrc;
+      let imageSize;
+      let imageOption;
 
-      // if (maskItem.type === "01") {
-      //   imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
-      //   imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-      //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      // } else if (maskItem.type === "02") {
-      //   imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
-      //   imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-      //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      // } else {
-      //   imageSrc = "/img/stt.png"; // 마커이미지의 주소입니다
-      //   imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-      //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      // }
+      if (maskItem.type === "01") {
+        imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      } else if (maskItem.type === "02") {
+        // 02가 하나로 마트라고 가정
+        imageSrc = "/img/hanaro.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      } else {
+        // 03이 우체국이라고 가정
+        imageSrc = "/img/post.png"; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      }
 
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
@@ -256,8 +297,7 @@ export default {
       const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
-        console.log(maskItem);
-        const maskOverlay = this.maskInfo(maskItem.masks);
+        // const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
           '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 73px; z-index: 9999;' +
@@ -274,13 +314,17 @@ export default {
           "총 재고 현황" +
           "</div>" +
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 1px;">' +
-          maskOverlay +
+          maskItem.remain_cnt +
           "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons earth"></div><a href="tel:' +
+          '                <div class=""><div class="smallicons phone"></div><a href="tel:' +
           maskItem.tel +
           ' "class="link"><div class="font-in-overlay" style="right: 95px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
-          maskItem.address +
+          maskItem.name +
+          "," +
+          maskItem.lat +
+          "," +
+          maskItem.lng +
           ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
           "</div>" +
           "</div>" +
@@ -342,27 +386,27 @@ export default {
 
         window.map.setCenter(locPosition);
 
-        await this.getMaskInfo();
-      }
-    },
-    async getMaskInfo() {
-      this.maskMarkers = [];
-      this.spinnerLoading = true;
-      try {
-        const res = await axios.get(
-          `?lat=${this.latitude}&lng=${this.longitude}`
-        );
-        this.maskData = res.data;
-        for (let i = 0; i < this.maskData.length; i++) {
-          if (this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
-          else this.displayMask(this.maskData[i]);
-        }
-        this.spinnerLoading = false;
-      } catch (e) {
-        this.spinnerLoading = false;
-        alert("서버 접속이 많아서 재시도 해 주세요");
+        await this.getMasks();
       }
     }
+    // async getMaskInfo() {
+    //   this.maskMarkers = [];
+    //   this.spinnerLoading = true;
+    //   try {
+    //     const res = await axios.get(
+    //       `?lat=${this.latitude}&lng=${this.longitude}`
+    //     );
+    //     this.maskData = res.data;
+    //     for (let i = 0; i < this.maskData.length; i++) {
+    //       if (!this.maskData[i].soldout) this.displaySoldout(this.maskData[i]);
+    //       else this.displayMask(this.maskData[i]);
+    //     }
+    //     this.spinnerLoading = false;
+    //   } catch (e) {
+    //     this.spinnerLoading = false;
+    //     alert("서버 접속이 많아서 재시도 해 주세요");
+    //   }
+    // }
   }
 };
 </script>

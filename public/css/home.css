@@ -16,8 +16,9 @@
   width: 90vw;
   height: 7vh;
   max-height: 50px;
-  border-radius: 26px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  border: solid 1px #006ecb;
+  /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1); */
   top: 43px;
   z-index: 99;
   background-color: #ffffff;
@@ -332,6 +333,14 @@ body {
 }
 .earth {
   background-image: url(../img/earth.png);
+  background-size: 100%;
+  /* position: relative; */
+  left: -113px;
+  position: absolute;
+  top: 35px;
+}
+.phone{
+  background-image: url(../img/phone.png);
   background-size: 100%;
   /* position: relative; */
   left: -113px;

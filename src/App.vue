@@ -1,8 +1,16 @@
 <template>
-  <div id="app" style="height: 100%; background-color: #ffffff; overflow: hidden;">
-    <Header v-show="$route.path==='/map'"></Header>
-    <router-view></router-view>
-    <Modal v-show="showModal" @closeModal="showModal = false" />
+  <div
+    id="app"
+    style="height: 100%; background-color: #ffffff; overflow: hidden;"
+  >
+    <Header v-show="$route.path === '/map'"></Header>
+    <router-view @checkDate="checkDate" :birthDate="birthDate"></router-view>
+    <Modal
+      @closeModal="closeModal"
+      @clickButton="clickButton"
+      :showInfoModal="showInfoModal"
+      :showDateModal="showDateModal"
+    />
   </div>
 </template>
 
@@ -21,8 +29,25 @@ export default {
   },
   data() {
     return {
-      showModal: true
+      showInfoModal: true,
+      showDateModal: false,
+      birthDate: ""
     };
+  },
+  methods: {
+    checkDate() {
+      this.showDateModal = true;
+      // console.log("asdf");
+    },
+    clickButton(birthDate) {
+      this.showDateModal = false;
+      this.birthDate = birthDate;
+      console.log(birthDate);
+    },
+    closeModal() {
+      this.showInfoModal = false;
+      this.showDateModal = false;
+    }
   }
 };
 </script>
