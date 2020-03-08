@@ -86,19 +86,19 @@
             class="modal-body__text"
             style="position: relative; left: 5px; bottom: 10px; width: 260px;"
           >
+            <img
+              src="../assets/down-arrow.png"
+              style="z-index: 0; position: relative; left: 175px; top: 30px; width: 10px;"
+            />
             <select
               id="selectoption"
-              style="position: absolute; border-radius: 7px; border: solid; border-width: 1px; border-color: #7ed4e7; width: 180px; height: 38px; top: 35px; left: 15px; background-color: #ffffff; font-size: 11px; padding-left: 6px;"
+              style="position: absolute; border-radius: 7px; border: solid; border-width: 1px; border-color: #7ed4e7; width: 180px; height: 38px; top: 35px; left: 15px; background-color: rgba(255, 255, 255, 0); font-size: 11px; padding-left: 6px;"
               name="year"
             >
               <option value="선택해주세요" selected="selected">선택해주세요</option>
               <option value="바나나">바나나</option>
               <option value="사과">사과</option>
             </select>
-            <img
-              src="../assets/down-arrow.png"
-              style="z-index: 0; position: relative; left: 175px; top: 30px; width: 10px;"
-            />
             <button
               style="position: relative; left: 49px; top: -10px; width: 113px;
   height: 35px;
