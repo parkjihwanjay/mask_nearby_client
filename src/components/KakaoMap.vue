@@ -194,7 +194,7 @@ export default {
         // }
       } catch (e) {
         try {
-          // const res = await axios.get("두희님 서버");
+          // 두희님 서버
           const res = await axios.get(
             `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
           );
