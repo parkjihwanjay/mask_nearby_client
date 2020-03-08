@@ -3,13 +3,13 @@
     <div class="map" id="map" ref="map">
       <div class="input-back-back" style="position: relative; top: 60px;">
         <div class="input-backg">
-          <div class="search-input" id="search-input" type="text" value>
+          <div class="search-input2" id="search-input2" type="text" value>
             <input
               v-model="keyWord"
               @keyup.enter="search()"
               value
               type="text"
-              class="search-input-in"
+              class="search-input-in2"
               placeholder="목적지를 검색하세요"
             />
             <button class="search-btn" id="search-btn" @click="search()">
