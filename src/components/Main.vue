@@ -38,12 +38,12 @@
       </template>
       <div
         ref="check"
-        style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb;"
+        style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
       >
         {{ checkComment }}
       </div>
       <img
-        style="position: relative; width: 11px; top: 10px;display:inline;"
+        style="position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
         src="../assets/reload.png"
       />
     </div>
