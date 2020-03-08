@@ -45,7 +45,8 @@
               <li>
                 마스크 알리미는 코로나 알리미를 제작했던
                 <br />대학생 4명의 아이디어와 노력에 이두희님의
-                <br />데이터 기술 자문이 더해져 만들어졌습니다.
+                <br />데이터
+                기술 자문이 더해져 만들어졌습니다.
               </li>
             </ul>
           </div>
@@ -76,7 +77,7 @@
             </button>
           </div>
 
-          <div class="modal-header__subtitle">주변 편의점 마스크 재고현황을 확인해보세요!</div>
+          <div class="modal-header__subtitle">마스크 공적 판매처 재고현황을 확인해보세요!</div>
         </div>
         <div class="modal-body2" style>
           <!-- <div class="modal-body__img">
@@ -97,7 +98,7 @@
               v-model="birthDate"
             >
               <option value="선택해주세요" selected="selected">출생연도 선택하기</option>
-              <option v-for="date in dateList" :value="date">{{date}}</option>
+              <option v-for="date in dateList" :value="date">{{ date }}</option>
               <!-- <option value="1996">1996</option>
               <option value="1997">1997</option>
               <option value="1998">1998</option>-->

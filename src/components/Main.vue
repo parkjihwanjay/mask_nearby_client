@@ -18,8 +18,8 @@
     </div>-->
     <div class="yearcheck" style="width: 100%; font-size: 12px; position: relative; bottom: 14%;">
       <template v-if="birthDate.length">
-        <div>{{birthDate}}년생 이신 분은</div>
-        <div style="color:#006ecb; font-weight: bold;">{{buyPossible}}</div>
+        <div>{{ birthDate }}년생 이신 분은</div>
+        <div style="color:#006ecb; font-weight: bold;">{{ buyPossible }}</div>
       </template>
       <template v-else>
         <div>마스크 5부제에 따른</div>
@@ -29,7 +29,7 @@
         ref="check"
         @click="checkDate"
         style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb;"
-      >{{checkComment}}</div>
+      >{{ checkComment }}</div>
       <img
         style="position: relative; width: 11px; top: 10px;display:inline;"
         src="../assets/reload.png"
@@ -84,6 +84,7 @@ import hideVirtualKeyboard from "hide-virtual-keyboard";
 import axios from "axios";
 import Spinner from "./Spinner.vue";
 import Info from "./Info.vue";
+
 export default {
   name: "Main",
   data() {
@@ -193,22 +194,25 @@ export default {
       try {
         // 정부 서버 요청
         const res = await axios.get(
-          `?lat=${this.latitude}&lng=${this.longitude}`
+          "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
         );
+        console.log("정부 서버 요청");
+        console.log(res.data.stores);
         this.spinnerLoading = false;
         this.$router.push({
           path: "/map",
           name: "KakaoMap",
           params: {
-            maskData: res.data,
+            maskData: res.data.stores,
             latitude: this.latitude,
             longitude: this.longitude
           }
         });
       } catch (e) {
         try {
+          // 두희님 서버 요청
           const res = await axios.get(
-            `?lat=${this.latitude}&lng=${this.longitude}`
+            `https://mask-api.com/?lat=${this.latitude}&lng=${this.longitude}`
           );
           this.spinnerLoading = false;
           this.showLocButton = !this.showLocButton;
