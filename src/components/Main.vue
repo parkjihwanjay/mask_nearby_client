@@ -130,9 +130,9 @@ export default {
       // today = 2;
       today = String(today);
       let notes = "";
-      console.log(this.birthDate[3]);
+      // console.log(this.birthDate[3]);
 
-      console.log(notes);
+      // console.log(notes);
       if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
@@ -169,7 +169,7 @@ export default {
       this.$emit("checkDate");
     },
     search() {
-      console.log("search");
+      // console.log("search");
       hideVirtualKeyboard();
       return this.checkHour();
       // if (!this.checkHour()) {
@@ -245,8 +245,8 @@ export default {
         const res = await axios.get(
           "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
         );
-        console.log("정부 서버 요청");
-        console.log(res.data.stores);
+        // console.log("정부 서버 요청");
+        // console.log(res.data.stores);
         this.spinnerLoading = false;
         this.$router.push({
           path: "/map",
