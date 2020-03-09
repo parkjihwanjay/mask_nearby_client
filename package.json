@@ -18,11 +18,11 @@
     "deploy:4": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.120.125 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
     "deploy:5": "ssh -i ./src/config/corona-elksha.pem ubuntu@15.164.49.223 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
     "deploy:all": "yarn deploy:1 && yarn deploy:2 && yarn deploy:3 && yarn deploy:4 && yarn deploy:5",
-    "delete:1": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "delete:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "delete:3": "ssh -i ./src/config/corona-elksha.pem ubuntu@13.209.49.249 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "delete:4": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.120.125 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "delete:5": "ssh -i ./src/config/corona-elksha.pem ubuntu@15.164.49.223 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "delete:1": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
+    "delete:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
+    "delete:3": "ssh -i ./src/config/corona-elksha.pem ubuntu@13.209.49.249 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
+    "delete:4": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.120.125 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
+    "delete:5": "ssh -i ./src/config/corona-elksha.pem ubuntu@15.164.49.223 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
     "delete:all": "yarn delete:1 && yarn delete:2 && yarn delete:3 && yarn delete:4 && yarn delete:5"
   },
   "dependencies": {
