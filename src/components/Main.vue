@@ -198,9 +198,7 @@ export default {
       //   // return false;
       // }
       if (true) {
-        alert(
-          "공적판매처는 화요일에 추가될 예정이며, 이를 위한 점검 작업을 거치고 있습니다. :) 구매 가능 요일을 확인해주세요!"
-        );
+        alert("잠시 서비스 점검 중입니다.");
         // return false;
       }
       // return true;
