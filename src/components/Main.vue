@@ -171,7 +171,7 @@ export default {
     search() {
       console.log("search");
       hideVirtualKeyboard();
-      this.checkHour();
+      return this.checkHour();
       // if (!this.checkHour()) {
       // 	return;
       // }
@@ -206,7 +206,8 @@ export default {
       // return true;
     },
     getAndDisplayLocation() {
-      this.checkHour();
+      return this.checkHour();
+
       // if (!this.checkHour()) {
       // 	return;
       // }
@@ -247,15 +248,15 @@ export default {
         console.log("정부 서버 요청");
         console.log(res.data.stores);
         this.spinnerLoading = false;
-        // this.$router.push({
-        //   path: "/map",
-        //   name: "KakaoMap",
-        //   params: {
-        //     maskData: res.data.stores,
-        //     latitude: this.latitude,
-        //     longitude: this.longitude
-        //   }
-        // });
+        this.$router.push({
+          path: "/map",
+          name: "KakaoMap",
+          params: {
+            maskData: res.data.stores,
+            latitude: this.latitude,
+            longitude: this.longitude
+          }
+        });
       } catch (e) {
         try {
           // 두희님 서버 요청
@@ -265,15 +266,15 @@ export default {
           );
           this.spinnerLoading = false;
           this.showLocButton = !this.showLocButton;
-          // this.$router.push({
-          //   path: "/map",
-          //   name: "KakaoMap",
-          //   params: {
-          //     maskData: res.data,
-          //     latitude: this.latitude,
-          //     longitude: this.longitude
-          //   }
-          // });
+          this.$router.push({
+            path: "/map",
+            name: "KakaoMap",
+            params: {
+              maskData: res.data,
+              latitude: this.latitude,
+              longitude: this.longitude
+            }
+          });
         } catch (e) {
           this.showLocButton = !this.showLocButton;
           this.spinnerLoading = false;
