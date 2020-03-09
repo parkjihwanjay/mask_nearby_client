@@ -53,7 +53,7 @@
       </div>
       <div
         class="input-back-back"
-        style="š  margin-top: 330px; width: 100%;  z-index: 2;"
+        style="š  margin-top: 330px; width: 100%; z-index: 2;"
       >
         <div class="input-backg">
           <div class="search-input" style="width: 80vw; " type="text" value>
