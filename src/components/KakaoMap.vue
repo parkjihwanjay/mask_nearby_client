@@ -305,37 +305,20 @@ export default {
         // const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
-          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 76px; z-index: 9999;' +
-          long3 +
-          '">' +
-          '    <div class="info" style="">' +
+          '<div class="wrap">' +
+          '    <div class="info">' +
           '        <div class="title">' +
-          maskItem.name +
-          '            <img src="/img/overclose.png" id="search-overlay" style="padding-right:7px;"	 onclick="closeSearchOverLay()" title="닫기"></img>' +
+          "            카카오 스페이스닷원" +
+          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
           "        </div>" +
           '        <div class="body">' +
+          '            <div class="img">' +
+          '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+          "           </div>" +
           '            <div class="desc">' +
-          '                <div class="ellipsis">' +
-          "총 재고 현황 : " +
-          maskItem.remain_cnt +
-          "</div>" +
-          '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 5px; right: 86px;">' +
-          '<div class="cool" style="position: absolute; font-size: 12px; left: -38px; top: 15px;">재고 현황 업데이트 시간 : ' +
-          maskItem.stock_t +
-          "</div>" +
-          "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons phone"></div><a href="tel:' +
-          maskItem.tel +
-          ' "class="link"><div class="font-in-overlay" style="right: 63px;">전화걸기</div></div>' +
-          '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
-          maskItem.name +
-          "," +
-          maskItem.lat +
-          "," +
-          maskItem.lng +
-          ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
-          "</div>" +
-          "</div>" +
+          '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
+          '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
+          '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
           "            </div>" +
           "        </div>" +
           "    </div>" +
