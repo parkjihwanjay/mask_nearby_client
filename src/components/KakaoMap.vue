@@ -300,8 +300,8 @@ export default {
         imageColor = "gray";
       }
 
-      imageSrc = `/img/${imageType}${imageColor}`;
-
+      // imageSrc = `/img/${imageType}${imageColor}`;
+      imageSrc = "/img/pharm.png";
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
         imageSize,
@@ -328,17 +328,29 @@ export default {
           '<div class="wrap">' +
           '    <div class="info">' +
           '        <div class="title">' +
-          "            카카오 스페이스닷원" +
-          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+          maskItem.name +
+          '            <div class="close" onclick="closeSearchOverlay()" title="닫기"></div>' +
           "        </div>" +
           '        <div class="body">' +
-          '            <div class="img">' +
-          '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-          "           </div>" +
           '            <div class="desc">' +
-          '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-          '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-          '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+          '                <div class="ellipsis">' +
+          "재고 상태 : " +
+          remainStatus +
+          "</div>" +
+          '<div class="cool" style="position: relative; font-size: 12px; left: 0px; top: 0px;">재고 현황 업데이트 시간 : ' +
+          maskItem.stock_t +
+          "</div>" +
+          '<div class="namu">' +
+          '<div class="smallicons phone"></div><a href="tel:' +
+          maskItem.tel +
+          ' "class="link"><div class="font-in-overlay" style="right: 18px; bottom: 2px; position: relative;">전화걸기</div></a>' +
+          '<div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
+          maskItem.name +
+          "," +
+          maskItem.lat +
+          "," +
+          maskItem.lng +
+          ' "class="link"><div class="font-in-overlay" style="right: 18px; bottom: 2px; position: relative;">길찾기</div></div>' +
           "            </div>" +
           "        </div>" +
           "    </div>" +

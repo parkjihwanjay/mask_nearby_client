@@ -95,6 +95,7 @@ export default {
       keyWord: "",
       latitude: "",
       longitude: "",
+      area: 1000,
       maskData: "",
       spinnerLoading: false,
       showLocButton: true
@@ -226,7 +227,7 @@ export default {
       try {
         // 정부 서버 요청
         const res = await axios.get(
-          "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=10000;"
+          `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=${this.area}`
         );
         // console.log("정부 서버 요청");
         // console.log(res.data.stores);
