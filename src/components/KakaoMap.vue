@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
-      <div
-        class="input-back-back"
-        style="position: relative; top: 60px; z-index:2;"
-      >
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -279,7 +273,7 @@ export default {
       let remainStatus;
       // console.log(maskItem.type);
       let imageSize = new kakao.maps.Size(40, 45); // 마커이미지의 크기입니다
-      let imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      let imageOption = { offset: new kakao.maps.Point(20, 45) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
       if (maskItem.type === "01") {
         imageType = "pharm";
@@ -321,7 +315,7 @@ export default {
 
       const locPosition = new kakao.maps.LatLng(maskItem.lat, maskItem.lng);
 
-      window.map.setLevel(5);
+      // window.map.setLevel(5);
 
       const marker = new kakao.maps.Marker({
         map: window.map,
