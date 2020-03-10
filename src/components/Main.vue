@@ -110,7 +110,7 @@ export default {
       keyWord: "",
       latitude: "",
       longitude: "",
-      area: 1000,
+      area: 2000,
       maskData: "",
       spinnerLoading: false,
       showLocButton: true

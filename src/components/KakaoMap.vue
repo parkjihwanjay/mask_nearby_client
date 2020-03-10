@@ -49,7 +49,7 @@ export default {
       latitude: "",
       longitude: "",
       spinnerLoading: false,
-      area: 1000,
+      area: 2000,
       // 배포
       maskData: [],
       //테스트 용
