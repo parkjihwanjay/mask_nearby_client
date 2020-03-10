@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; bottom: 0px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 0px;">
     <!-- <div style="width: 80vw; max-width: 700px;">
       <img class="questionmark" style="position: relative; width: 25px; top: 10px; left: -10px;" src="../assets/qms.png" />
     </div>-->
@@ -30,31 +27,22 @@
       >
         <template v-if="birthDate.length">
           <div>{{ birthDate }}년생 이신 분은</div>
-          <div style="color:#006ecb; font-size:14px; font-weight: bold;">
-            {{ buyPossible }}
-          </div>
+          <div style="color:#006ecb; font-size:14px; font-weight: bold;">{{ buyPossible }}</div>
         </template>
         <template v-else>
           <div>마스크 5부제에 따른</div>
-          <div style="color:#006ecb; font-size:14px; font-weight: bold;">
-            오늘의 구매 가능 여부를 확인해보세요!
-          </div>
+          <div style="color:#006ecb; font-size:14px; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
         </template>
         <div
           ref="check"
           style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
-        >
-          {{ checkComment }}
-        </div>
+        >{{ checkComment }}</div>
         <img
           style=" position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
           src="../assets/reload.png"
         />
       </div>
-      <div
-        class="input-back-back"
-        style="š  margin-top: 330px; width: 100%; z-index: 2;"
-      >
+      <div class="input-back-back" style="š  margin-top: 330px; width: 100%; z-index: 2;">
         <div class="input-backg">
           <div class="search-input" style="width: 80vw; " type="text" value>
             <input
@@ -74,10 +62,7 @@
       </div>
     </div>
 
-    <div
-      class="btn-container"
-      style="width: 100%; position: absolute; bottom: 21%;z-index:0;"
-    >
+    <div class="btn-container" style="width: 100%; position: absolute; bottom: 21%;z-index:0;">
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
@@ -171,7 +156,7 @@ export default {
     search() {
       // console.log("search");
       hideVirtualKeyboard();
-      return this.checkHour();
+      this.checkHour();
       // if (!this.checkHour()) {
       // 	return;
       // }
@@ -204,7 +189,7 @@ export default {
       // return true;
     },
     getAndDisplayLocation() {
-      return this.checkHour();
+      this.checkHour();
 
       // if (!this.checkHour()) {
       // 	return;
