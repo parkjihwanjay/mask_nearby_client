@@ -11,7 +11,9 @@
         style="width: 100%; position: relative; bottom: 133px; z-index:10; font-size:12px; font-weight: bold;"
       >
         재고를 확인 중입니다
-        <div style="display: flex; flex-direction: row; justify-content: center;">
+        <div
+          style="display: flex; flex-direction: row; justify-content: center;"
+        >
           (
           <div>{{ count }}</div>
           <div>% 완료)</div>
@@ -20,7 +22,7 @@
     </div>
     <div
       v-show="$route.path === '/'"
-      class="loadtogether"
+      class="loadtogether nownow"
       style="position: absolute; bottom: 18%; width: 100%;"
     >
       <div class="loader"></div>
@@ -29,7 +31,9 @@
         style="width: 100%; position: relative; bottom: 133px; z-index:10; font-size:12px; font-weight: bold;"
       >
         재고를 확인 중입니다
-        <div style="display: flex; flex-direction: row; justify-content: center;">
+        <div
+          style="display: flex; flex-direction: row; justify-content: center;"
+        >
           (
           <div>{{ count }}</div>
           <div>% 완료)</div>
@@ -145,6 +149,9 @@ export default {
   }
 }
 @media (max-width: 768px) and (max-height: 700px) {
+  .nownow {
+    bottom: 7% !important;
+  }
 }
 /* spinner */
 </style>

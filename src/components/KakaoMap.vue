@@ -26,6 +26,9 @@
       </div>
     </div>
     <Spinner v-if="spinnerLoading" />
+    <div class="color-info">
+      <img src="../assets/color-info.png" />
+    </div>
   </div>
 </template>
 
@@ -191,7 +194,7 @@ export default {
 
         window.map.setCenter(locPosition);
 
-        this.maskData = res.data;
+        this.maskData = res.data.stores;
         this.displayMasks(this.maskData);
         this.spinnerLoading = false;
         window.map.setDraggable(true);
@@ -275,7 +278,7 @@ export default {
 
       let remainStatus;
       // console.log(maskItem.type);
-      let imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+      let imageSize = new kakao.maps.Size(40, 45); // 마커이미지의 크기입니다
       let imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
       if (maskItem.type === "01") {
@@ -307,8 +310,9 @@ export default {
         imageColor = "gray";
       }
 
-      // imageSrc = `/img/${imageType}${imageColor}`;
-      imageSrc = "/img/pharm.png";
+      imageSrc = `/img/${imageType}${imageColor}.png`;
+      console.log(imageSrc);
+      // imageSrc = "/img/pharm.png";
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
         imageSize,
@@ -336,7 +340,7 @@ export default {
           '    <div class="info">' +
           '        <div class="title">' +
           maskItem.name +
-          '            <div class="close" onclick="closeSearchOverlay()" title="닫기"></div>' +
+          '            <div class="close" onclick="closeSearchOverLay()" title="닫기"></div>' +
           "        </div>" +
           '        <div class="body">' +
           '            <div class="desc">' +
@@ -344,8 +348,8 @@ export default {
           "재고 상태 : " +
           remainStatus +
           "</div>" +
-          '<div class="cool" style="position: relative; font-size: 12px; left: 0px; top: 0px;">재고 현황 업데이트 시간 : ' +
-          maskItem.stock_t +
+          '<div class="cool" style="position: relative; font-size: 12px; left: -6px; top: 0px;">업데이트 시간 : ' +
+          maskItem.created_at +
           "</div>" +
           '<div class="namu">' +
           // '<div class="smallicons phone"></div><a style="text-decoration: none;" href="tel:' +
@@ -442,6 +446,22 @@ export default {
 </script>
 
 <style scoped>
+.color-info {
+  position: absolute;
+  bottom: 9px;
+  right: 0px;
+  z-index: 9;
+  width: 127px;
+  height: 127px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.color-info img {
+  width: 100%;
+  height: 100%;
+}
+
 .footer-btn {
   display: flex;
   position: absolute;
