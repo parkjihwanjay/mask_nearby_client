@@ -333,8 +333,12 @@ export default {
       const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
+        let longlong = "left : -6px;";
         // const maskOverlay = this.maskInfo(maskItem.masks);
-
+        if (maskItem.created_at === null) {
+          maskItem.created_at = "정보없음";
+          longlong = "left : 22px;";
+        }
         const content =
           '<div class="wrap">' +
           '    <div class="info">' +
@@ -348,7 +352,9 @@ export default {
           "재고 상태 : " +
           remainStatus +
           "</div>" +
-          '<div class="cool" style="position: relative; font-size: 12px; left: -6px; top: 0px;">업데이트 시간 : ' +
+          '<div class="cool" style="position: relative; font-size: 12px;' +
+          longlong +
+          'top: 0px;">업데이트 시간 : ' +
           maskItem.created_at +
           "</div>" +
           '<div class="namu">' +
