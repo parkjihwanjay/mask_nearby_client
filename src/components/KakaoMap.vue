@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
-      <div
-        class="input-back-back"
-        style="position: relative; top: 60px; z-index:2;"
-      >
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -332,13 +326,11 @@ export default {
         // const maskOverlay = this.maskInfo(maskItem.masks);
 
         const content =
-          '<div class="wrap" id="overdiv" style="position: relative; bottom: 110px; left: 76px; z-index: 9999;' +
-          long3 +
-          '">' +
-          '    <div class="info" style="">' +
+          '<div class="wrap">' +
+          '    <div class="info">' +
           '        <div class="title">' +
           maskItem.name +
-          '            <img src="/img/overclose.png" id="search-overlay" style="padding-right:7px;"	 onclick="closeSearchOverLay()" title="닫기"></img>' +
+          '            <div class="close" onclick="closeSearchOverlay()" title="닫기"></div>' +
           "        </div>" +
           '        <div class="body">' +
           '            <div class="desc">' +
@@ -346,23 +338,20 @@ export default {
           "재고 상태 : " +
           remainStatus +
           "</div>" +
-          '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 5px; right: 86px;">' +
-          '<div class="cool" style="position: relative; font-size: 12px; left: 0px; top: 15px;">재고 현황 업데이트 시간 : ' +
+          '<div class="cool" style="position: relative; font-size: 12px; left: 0px; top: 0px;">재고 현황 업데이트 시간 : ' +
           maskItem.stock_t +
           "</div>" +
-          "<div class='find-address'>" +
-          '                <div class=""><div class="smallicons phone"></div><a href="tel:' +
+          '<div class="namu">' +
+          '<div class="smallicons phone"></div><a href="tel:' +
           maskItem.tel +
-          ' "class="link"><div class="font-in-overlay" style="right: 20px;">전화걸기</div></div>' +
-          '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
+          ' "class="link"><div class="font-in-overlay" style="right: 18px; bottom: 2px; position: relative;">전화걸기</div></a>' +
+          '<div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.name +
           "," +
           maskItem.lat +
           "," +
           maskItem.lng +
-          ' "class="link"><div class="font-in-overlay">길찾기</div></div>' +
-          "</div>" +
-          "</div>" +
+          ' "class="link"><div class="font-in-overlay" style="right: 18px; bottom: 2px; position: relative;">길찾기</div></div>' +
           "            </div>" +
           "        </div>" +
           "    </div>" +

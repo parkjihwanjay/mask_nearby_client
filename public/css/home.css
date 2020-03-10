@@ -322,9 +322,9 @@ body {
   background-image: url(../img/pin.png);
   background-size: 100%;
   /* position: relative; */
-  left: 69px;
-  position: absolute;
-  top: -2px;
+  left: 4px;
+  position: relative;
+  top: 0px;
 }
 .earth {
   background-image: url(../img/earth.png);
@@ -340,132 +340,14 @@ body {
   position: relative;
   left: 0px;
   /* position: absolute; */
-  top: 17px;
+  top: 0px;
 }
 .menu_selected {
   opacity: 0.3;
 }
-.wrap {
-  font-family: NanumGothic;
-  position: absolute;
-  left: 42px;
-  bottom: 40px;
-  min-width: 200px;
-  height: 110px;
-  margin-left: -144px;
-  text-align: left;
-  overflow: hidden;
-  font-size: 12px;
-  font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
-  line-height: 1.5;
-}
-.wrap * {
-  padding: 0;
-  margin: 0;
-}
-.wrap .info {
-  height: 100px;
-  border-radius: 5px;
-  border-bottom: 2px solid #ccc;
-  border-right: 1px solid #ccc;
-  overflow: hidden;
-  background: #fff;
-}
-.wrap .info:nth-child(1) {
-  border: 0;
-  box-shadow: 0px 1px 2px #888;
-}
-.info .title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2px 0 0 10px;
-  height: 30px;
-  background: #eee;
-  border-bottom: 1px solid #ddd;
-  font-size: 18px;
-  font-weight: bold;
-}
-.info .close {
-  margin-left: 10px;
-  margin-right: 10px;
-  color: #888;
-  -webkit-text-fill-color: #888;
-  width: 17px;
-  height: 17px;
-}
-.close {
-  background-image: url("/img/overclose.png");
-  z-index: 9;
-}
-.info .close:hover {
-  cursor: pointer;
-}
-.info .body {
-  position: relative;
-  overflow: hidden;
-}
-.info .desc {
-  min-width: 190px;
-  position: relative;
-  margin: 6px 7px 0 10px;
-  height: 75px;
-}
-.desc .ellipsis {
-  width: max-content;
-  font-weight: bold;
-  font-size: 16px;
-  position: relative;
-  top: -3px;
-  left: 86px;
-}
-.font-in-overlay {
-  color: #006ecb;
-  position: relative;
-  right: -85px;
-  bottom: 5px;
-}
 .mask-total-num {
   font-weight: bold;
   font-size: 20px;
-}
-.desc {
-  display: flex;
-  justify-content: center;
-  width: 15px;
-}
-.desc .jibun {
-  font-size: 11px;
-  color: #888;
-  margin-top: -2px;
-}
-.info .img {
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  width: 73px;
-  height: 71px;
-  border: 1px solid #ddd;
-  color: #888;
-  overflow: hidden;
-}
-.info:after {
-  content: "";
-  position: absolute;
-  margin-left: -12px;
-  left: 50%;
-  bottom: 0;
-  width: 22px;
-  height: 12px;
-  background: url("http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
-}
-.info .link {
-  text-decoration: none;
-  color: #277bcf;
-  font-size: 15px;
-  position: absolute;
-  top: 37px;
-  left: 38px;
 }
 @media (max-width: 768px) {
   .nav {
@@ -566,3 +448,30 @@ iframe {
   left: 0px;
   right: 0px;
 }
+.wrap {position: absolute;left: 38px;bottom: 55px;width: 220px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 220px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 8px 0 0 23px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+      text-align: center;
+      position: relative;
+      right: 12px;
+      font-size: 17px;
+      font-weight: bold;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
+    .namu {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      right: 8px;
+      top: 9px;
+      font-size: 13px;
+      position: relative;}
