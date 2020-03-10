@@ -172,7 +172,7 @@ export default {
     search() {
       // console.log("search");
       hideVirtualKeyboard();
-      this.checkHour();
+      return this.checkHour();
       // if (!this.checkHour()) {
       // 	return;
       // }
@@ -199,13 +199,15 @@ export default {
       //   // return false;
       // }
       if (true) {
-        alert("잠시 서비스 점검 중입니다.");
+        alert(
+          "우체국, 하나로마트 재고 현황이 공개되는대로 업데이트 하겠습니다."
+        );
         // return false;
       }
       // return true;
     },
     getAndDisplayLocation() {
-      this.checkHour();
+      return this.checkHour();
 
       // if (!this.checkHour()) {
       // 	return;
