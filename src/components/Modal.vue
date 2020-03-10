@@ -33,7 +33,6 @@
             style="position: relative; left: 5px; bottom: 10px; width: 260px;"
           >
             <ul>
-              <li>내일(3/10일) 공적마스크 재고 현황이 추가 될 예정입니다.</li>
               <li>출생연도로 구매 가능 여부를 확인해보시고, 구매하세요!</li>
               <li>
                 마스크 알리미는 코로나 알리미를 제작했던

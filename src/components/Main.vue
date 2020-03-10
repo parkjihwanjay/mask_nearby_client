@@ -1,5 +1,8 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; bottom: 0px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; bottom: 0px;"
+  >
     <!-- <div style="width: 80vw; max-width: 700px;">
       <img class="questionmark" style="position: relative; width: 25px; top: 10px; left: -10px;" src="../assets/qms.png" />
     </div>-->
@@ -27,22 +30,31 @@
       >
         <template v-if="birthDate.length">
           <div>{{ birthDate }}년생 이신 분은</div>
-          <div style="color:#006ecb; font-size:14px; font-weight: bold;">{{ buyPossible }}</div>
+          <div style="color:#006ecb; font-size:14px; font-weight: bold;">
+            {{ buyPossible }}
+          </div>
         </template>
         <template v-else>
           <div>마스크 5부제에 따른</div>
-          <div style="color:#006ecb; font-size:14px; font-weight: bold;">오늘의 구매 가능 여부를 확인해보세요!</div>
+          <div style="color:#006ecb; font-size:14px; font-weight: bold;">
+            오늘의 구매 가능 여부를 확인해보세요!
+          </div>
         </template>
         <div
           ref="check"
           style="position: relative; top: 10px; display: inline; right: 3px; color:#006ecb; cursor:pointer;"
-        >{{ checkComment }}</div>
+        >
+          {{ checkComment }}
+        </div>
         <img
           style=" position: relative; width: 11px; top: 10px;display:inline; cursor:pointer;"
           src="../assets/reload.png"
         />
       </div>
-      <div class="input-back-back" style="š  margin-top: 330px; width: 100%;  z-index: 0;">
+      <div
+        class="input-back-back"
+        style="š  margin-top: 330px; width: 100%; z-index: 2;"
+      >
         <div class="input-backg">
           <div class="search-input" style="width: 80vw; " type="text" value>
             <input
@@ -62,7 +74,10 @@
       </div>
     </div>
 
-    <div class="btn-container" style="width: 100%; position: absolute; bottom: 21%;">
+    <div
+      class="btn-container"
+      style="width: 100%; position: absolute; bottom: 21%;z-index:0;"
+    >
       <button
         v-show="showLocButton"
         @click="getAndDisplayLocation()"
@@ -115,9 +130,9 @@ export default {
       // today = 2;
       today = String(today);
       let notes = "";
-      console.log(this.birthDate[3]);
+      // console.log(this.birthDate[3]);
 
-      console.log(notes);
+      // console.log(notes);
       if (today === "0" || today === "6") return "구매하실 수 있는 날 입니다.";
       if (
         today === this.birthDate[3] ||
@@ -154,9 +169,9 @@ export default {
       this.$emit("checkDate");
     },
     search() {
-      console.log("search");
+      // console.log("search");
       hideVirtualKeyboard();
-      this.checkHour();
+      return this.checkHour();
       // if (!this.checkHour()) {
       // 	return;
       // }
@@ -178,20 +193,19 @@ export default {
       const hour = new Date().getHours();
       // if (10 > hour || hour >= 23) {
       //   alert(
-      //     "공적판매처는 곧 추가 될 예정입니다 :) 구매 가능 요일을 확인해주세요!"
+      //     "적판매처는 곧 추가 될 예정입니다 :) 구매 가능 요일을 확인해주세요!"
       //   );
       //   // return false;
       // }
       if (true) {
-        alert(
-          "공적판매처는 화요일에 추가될 예정이며, 이를 위한 점검 작업을 거치고 있습니다. :) 구매 가능 요일을 확인해주세요!"
-        );
+        alert("잠시 서비스 점검 중입니다.");
         // return false;
       }
       // return true;
     },
     getAndDisplayLocation() {
-      this.checkHour();
+      return this.checkHour();
+
       // if (!this.checkHour()) {
       // 	return;
       // }
@@ -229,18 +243,18 @@ export default {
         const res = await axios.get(
           "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=10000;"
         );
-        console.log("정부 서버 요청");
-        console.log(res.data.stores);
+        // console.log("정부 서버 요청");
+        // console.log(res.data.stores);
         this.spinnerLoading = false;
-        // this.$router.push({
-        //   path: "/map",
-        //   name: "KakaoMap",
-        //   params: {
-        //     maskData: res.data.stores,
-        //     latitude: this.latitude,
-        //     longitude: this.longitude
-        //   }
-        // });
+        this.$router.push({
+          path: "/map",
+          name: "KakaoMap",
+          params: {
+            maskData: res.data.stores,
+            latitude: this.latitude,
+            longitude: this.longitude
+          }
+        });
       } catch (e) {
         try {
           // 두희님 서버 요청
@@ -250,15 +264,15 @@ export default {
           );
           this.spinnerLoading = false;
           this.showLocButton = !this.showLocButton;
-          // this.$router.push({
-          //   path: "/map",
-          //   name: "KakaoMap",
-          //   params: {
-          //     maskData: res.data,
-          //     latitude: this.latitude,
-          //     longitude: this.longitude
-          //   }
-          // });
+          this.$router.push({
+            path: "/map",
+            name: "KakaoMap",
+            params: {
+              maskData: res.data,
+              latitude: this.latitude,
+              longitude: this.longitude
+            }
+          });
         } catch (e) {
           this.showLocButton = !this.showLocButton;
           this.spinnerLoading = false;

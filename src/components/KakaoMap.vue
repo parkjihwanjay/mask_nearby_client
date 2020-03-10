@@ -1,7 +1,7 @@
 <template>
   <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
-      <div class="input-back-back" style="position: relative; top: 60px;">
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -263,24 +263,44 @@ export default {
       console.log("maskItem");
       console.log(maskItem);
       let imageSrc;
-      let imageSize;
-      let imageOption;
+      let imageType;
+      let imageColor;
+
+      let remainStatus;
       // console.log(maskItem.type);
+      let imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+      let imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
       if (maskItem.type === "01") {
-        imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        imageType = "pharm";
+        // imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
       } else if (maskItem.type === "02") {
         // 02가 하나로 마트라고 가정
-        imageSrc = "/img/hanaro.png"; // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        imageType = "hanaro";
       } else {
         // 03이 우체국이라고 가정
-        imageSrc = "/img/post.png"; // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        imageType = "post";
       }
+
+      if (maskItem.remain_stat === "plenty") {
+        // 녹색 이미지(100개 이상)
+        imageColor = "green";
+        remainStatus = "많음(100개 이상)";
+      } else if (maskItem.remain_stat === "some") {
+        // 노랑색 이미지(30~99개)
+        remainStatus = "보통(30~100개)";
+        imageColor = "yellow";
+      } else if (maskItem.remain_stat === "few") {
+        // 빨강색 이미지(1~29개)
+        remainStatus = "적음(1~30개)";
+        imageColor = "red";
+      } else {
+        // 회색 이미지(0개)
+        remainStatus = "없음(0개)";
+        imageColor = "gray";
+      }
+
+      imageSrc = `/img/${imageType}${imageColor}`;
 
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
