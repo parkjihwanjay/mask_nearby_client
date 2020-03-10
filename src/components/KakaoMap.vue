@@ -306,8 +306,8 @@ export default {
         imageColor = "gray";
       }
 
-      imageSrc = `/img/${imageType}${imageColor}`;
-
+      // imageSrc = `/img/${imageType}${imageColor}`;
+      imageSrc = "/img/pharm.png";
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
         imageSize,
@@ -346,13 +346,13 @@ export default {
           remainStatus +
           "</div>" +
           '<div class="telroad" style="font-size:20px; justify-content: space-around; position: relative; margin-left: 5px; top: 5px; right: 86px;">' +
-          '<div class="cool" style="position: absolute; font-size: 12px; left: -38px; top: 15px;">재고 현황 업데이트 시간 : ' +
+          '<div class="cool" style="position: relative; font-size: 12px; left: 0px; top: 15px;">재고 현황 업데이트 시간 : ' +
           maskItem.stock_t +
           "</div>" +
           "<div class='find-address'>" +
           '                <div class=""><div class="smallicons phone"></div><a href="tel:' +
           maskItem.tel +
-          ' "class="link"><div class="font-in-overlay" style="right: 63px;">전화걸기</div></div>' +
+          ' "class="link"><div class="font-in-overlay" style="right: 20px;">전화걸기</div></div>' +
           '                <div class=""><div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
           maskItem.name +
           "," +
