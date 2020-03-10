@@ -321,10 +321,11 @@ body {
 .pin {
   background-image: url(../img/pin.png);
   background-size: 100%;
-  /* position: relative; */
-  left: 4px;
+  left: 6px;
   position: relative;
-  top: 0px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
 }
 .earth {
   background-image: url(../img/earth.png);
@@ -457,10 +458,12 @@ iframe {
     .info .close:hover {cursor: pointer;}
     .info .body {position: relative;overflow: hidden;}
     .info .desc {position: relative;margin: 8px 0 0 23px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+    .desc .ellipsis {
+      text-overflow: ellipsis;
+      white-space: nowrap;
       text-align: center;
       position: relative;
-      right: 12px;
+      right: 11px;
       font-size: 17px;
       font-weight: bold;}
     .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
@@ -468,10 +471,16 @@ iframe {
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
     .namu {
-      display: flex;
-      justify-content: space-around;
-      flex-direction: row;
-      right: 8px;
-      top: 9px;
-      font-size: 13px;
-      position: relative;}
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    right: 8px;
+    top: 4px;
+    font-size: 13px;
+    position: relative;
+    border-width: 1px;
+    width: 80px;
+    left: 47px;
+    border-radius: 8px;
+    background-color: #7ed4e7;
+    height: 23px;}

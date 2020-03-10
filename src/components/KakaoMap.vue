@@ -1,7 +1,13 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
-      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
+      <div
+        class="input-back-back"
+        style="position: relative; top: 60px; z-index:2;"
+      >
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -342,16 +348,16 @@ export default {
           maskItem.stock_t +
           "</div>" +
           '<div class="namu">' +
-          '<div class="smallicons phone"></div><a href="tel:' +
-          maskItem.tel +
-          ' "class="link"><div class="font-in-overlay" style="right: 18px; bottom: 2px; position: relative;">전화걸기</div></a>' +
-          '<div class="smallicons pin"></div><a href="https://map.kakao.com/link/to/' +
+          // '<div class="smallicons phone"></div><a style="text-decoration: none;" href="tel:' +
+          // maskItem.tel +
+          // ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -3px;color: white;position: relative;">전화걸기</div></a>' +
+          '<div class="smallicons pin"></div><a style="text-decoration: none;" href="https://map.kakao.com/link/to/' +
           maskItem.name +
           "," +
           maskItem.lat +
           "," +
           maskItem.lng +
-          ' "class="link"><div class="font-in-overlay" style="right: 18px; bottom: 2px; position: relative;">길찾기</div></div>' +
+          ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -3px;color: white;position: relative;">길찾기</div></div>' +
           "            </div>" +
           "        </div>" +
           "    </div>" +
