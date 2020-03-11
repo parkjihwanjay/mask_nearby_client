@@ -11,11 +11,18 @@
           <div class="modal-header__title">
             <div>마스크 알리미</div>
             <button class="closeBtn">
-              <img @click="$emit('closeModal')" class="img" src="../assets/closeBtn.png" alt="닫기" />
+              <img
+                @click="$emit('closeModal')"
+                class="img"
+                src="../assets/closeBtn.png"
+                alt="닫기"
+              />
             </button>
           </div>
 
-          <div class="modal-header__subtitle">마스크 공적 판매처 재고현황을 확인해보세요!</div>
+          <div class="modal-header__subtitle">
+            마스크 공적 판매처 재고현황을 확인해보세요!
+          </div>
         </div>
         <div class="modal-body">
           <!-- <div class="modal-body__img">
@@ -31,24 +38,21 @@
               </li>-->
               <li style="font-size: 12.5px;">
                 <strong>
-                  약국 재고 현황은 실시간이 아니며, 부정확할 수 있습니다.
-                  마스크 판매에 힘써주시는 약사 분들의 노고를 생각해주시면 감사하겠습니다.
+                  약국 재고 현황은 실시간이 아니며, 부정확할 수 있습니다. 마스크
+                  판매에 힘써주시는 약사 분들의 노고를 생각해주시면
+                  감사하겠습니다.
                 </strong>
               </li>
               <li style="font-size: 12.5px;">
                 <strong>
-                  정보 공개를 원치않으시는 약사분은 한국정보화진흥원 (maskdata@nia.or.kr)
-                  으로 문의해주시기 바랍니다.
+                  정보 공개를 원치않으시는 약사분은 한국정보화진흥원
+                  (maskdata@nia.or.kr) 으로 문의해주시기 바랍니다.
                 </strong>
               </li>
-              <li>출생연도로 구매 가능 여부를 확인해보시고, 구매하세요!</li>
-              <li>
-                마스크 알리미는 코로나 알리미를 제작했던
-                <br />대학생 4명의 아이디어와 노력에 이두희님의
-                <br />데이터
-                기술 자문이 더해져 만들어졌습니다.
-              </li>
             </ul>
+            <div class="donation">
+              <img src="../assets/donation.png" />
+            </div>
           </div>
         </div>
       </div>
@@ -61,12 +65,18 @@
           class="modal-header"
           style="width: 220px; height: 60px; background-image: linear-gradient(306deg, #79d3e6 105%, #83d6e8 73%, #89d8e9 23%, #ffffff -5%);"
         >
-          <div class="modal-header__title" style="width: 220px; font-size: 12px;">
+          <div
+            class="modal-header__title"
+            style="width: 220px; font-size: 12px;"
+          >
             <div style="text-align: left; position: relative; bottom: 5px;">
               오늘 마스크 구매가능 여부를
               <br />확인하세요!
             </div>
-            <button class="closeBtn" style="position: relative; padding-left: 0px; right: 40px;">
+            <button
+              class="closeBtn"
+              style="position: relative; padding-left: 0px; right: 40px;"
+            >
               <img
                 @click="$emit('closeModal')"
                 class="img"
@@ -77,7 +87,9 @@
             </button>
           </div>
 
-          <div class="modal-header__subtitle">마스크 공적 판매처 재고현황을 확인해보세요!</div>
+          <div class="modal-header__subtitle">
+            마스크 공적 판매처 재고현황을 확인해보세요!
+          </div>
         </div>
         <div class="modal-body2" style>
           <!-- <div class="modal-body__img">
@@ -97,7 +109,9 @@
               name="year"
               v-model="birthDate"
             >
-              <option value="선택해주세요" selected="selected">출생연도 선택하기</option>
+              <option value="선택해주세요" selected="selected"
+                >출생연도 선택하기</option
+              >
               <option v-for="date in dateList" :value="date">{{ date }}</option>
               <!-- <option value="1996">1996</option>
               <option value="1997">1997</option>
@@ -111,7 +125,9 @@
   background-color: #7ed4e7; color: #ffffff;
   -webkit-text-fill-color: #ffffff;
   "
-            >확인하기</button>
+            >
+              확인하기
+            </button>
           </div>
         </div>
       </div>
@@ -143,10 +159,23 @@ export default {
 </script>
 
 <style scoped>
+.donation {
+  margin-bottom: 10px;
+  position: relative;
+  top: -7px;
+  left: -8px;
+  width: 280px;
+  height: 169px;
+}
+.donation img {
+  width: 100%;
+  height: 100%;
+}
 .modal-body__text ul {
   /* padding: 0; */
   padding-inline-start: 25px;
   width: 89%;
+  margin-bottom: 0;
 }
 .modal-body__text li {
   padding-bottom: 28px;
