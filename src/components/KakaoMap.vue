@@ -187,7 +187,7 @@ export default {
       try {
         // 요청 서버를 정부 서버로
         const res = await axios.get(
-          `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}$m=${this.area}`
+          `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=${this.area}`
           // "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
         );
 
@@ -210,7 +210,7 @@ export default {
         try {
           // 두희님 서버
           const res = await axios.get(
-            `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=${this.area}`
+            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
           );
           const locPosition = new kakao.maps.LatLng(
             this.latitude,
