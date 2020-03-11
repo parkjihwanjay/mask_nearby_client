@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
-      <div
-        class="input-back-back"
-        style="position: relative; top: 60px; z-index:2;"
-      >
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -137,6 +131,8 @@ export default {
     this.displayMasks(this.maskData);
     // this.getPharm();
 
+    let dragcount = 0;
+
     kakao.maps.event.addListener(window.map, "dragend", async () => {
       // 지도 중심좌표를 얻어옵니다
       hideOverlays(window.overlays);
@@ -144,10 +140,16 @@ export default {
       // this.latitude = latlng.Ha;
       // this.longitude = latlng.Ga;
       // this.getMasks();
-      const diff = Math.abs(
-        this.latitude - latlng.Ha + (this.longitude - latlng.Ga)
-      );
-      if (diff > 0.015) {
+      dragcount += 1;
+      // const diff = Math.abs(
+      //   this.latitude - latlng.Ha + (this.longitude - latlng.Ga)
+      // );
+      // if (diff > 0.001) {
+      //   this.latitude = latlng.Ha;
+      //   this.longitude = latlng.Ga;
+      //   this.getMasks();
+      // }
+      if (dragcount % 2 === 0) {
         this.latitude = latlng.Ha;
         this.longitude = latlng.Ga;
         this.getMasks();
