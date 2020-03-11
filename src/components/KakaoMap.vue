@@ -135,15 +135,17 @@ export default {
       // 지도 중심좌표를 얻어옵니다
       hideOverlays(window.overlays);
       let latlng = window.map.getCenter();
-      this.latitude = latlng.Ha;
-      this.longitude = latlng.Ga;
-      this.getMasks();
-      // const diff = Math.abs(this.latitude - latlng.Ha + (this.longitude - latlng.Ga));
-      // if (diff > 0.015) {
-      // 	this.latitude = latlng.Ha;
-      // 	this.longitude = latlng.Ga;
-      // 	this.getCurrentMasks();
-      // }
+      // this.latitude = latlng.Ha;
+      // this.longitude = latlng.Ga;
+      // this.getMasks();
+      const diff = Math.abs(
+        this.latitude - latlng.Ha + (this.longitude - latlng.Ga)
+      );
+      if (diff > 0.015) {
+        this.latitude = latlng.Ha;
+        this.longitude = latlng.Ga;
+        this.getMasks();
+      }
     });
 
     // if (!window.markers.length) {
