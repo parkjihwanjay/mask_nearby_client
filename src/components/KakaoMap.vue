@@ -1,7 +1,13 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
-      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
+      <div
+        class="input-back-back"
+        style="position: relative; top: 60px; z-index:2;"
+      >
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -235,8 +241,8 @@ export default {
       return maskInfo;
     },
     displayMasks(maskData) {
-      console.log("maskdata");
-      console.log(maskData);
+      // console.log("maskdata");
+      // console.log(maskData);
       for (let i = 0; i < maskData.length; i++) {
         if (maskData[i].sold_out) continue;
 
@@ -266,8 +272,8 @@ export default {
       this.soldoutMarkers.push(soldoutMarker);
     },
     displayMask(maskItem) {
-      console.log("maskItem");
-      console.log(maskItem);
+      // console.log("maskItem");
+      // console.log(maskItem);
       let imageSrc;
       let imageType;
       let imageColor;
@@ -307,7 +313,7 @@ export default {
       }
 
       imageSrc = `/img/${imageType}${imageColor}.png`;
-      console.log(imageSrc);
+      // console.log(imageSrc);
       // imageSrc = "/img/pharm.png";
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
@@ -404,7 +410,7 @@ export default {
     },
     search() {
       hideVirtualKeyboard();
-      this.checkHour();
+      // this.checkHour();
       if (!this.keyWord.length) return alert("검색어를 입력해주세요");
       const ps = new kakao.maps.services.Places();
       ps.keywordSearch(this.keyWord, this.addresssSearchCB);
