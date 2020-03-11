@@ -163,8 +163,8 @@ export default {
   margin-bottom: 10px;
   position: relative;
   top: -7px;
-  left: -8px;
-  width: 280px;
+  left: -7px;
+  width: 278px;
   height: 169px;
 }
 .donation img {
