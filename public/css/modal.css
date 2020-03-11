@@ -35,7 +35,7 @@
 }
 .modal-header {
   width: 273px;
-  height: 72px;
+  height: 59px;
   background-color: #75d0e7;
   border-radius: 35px 35px 0 0;
   color: #ffffff;
@@ -61,7 +61,7 @@
 .closeBtn {
   background-color: transparent;
   padding: 0;
-  padding-left: 103px;
+  padding-left: 7px;
   width: 18px;
   height: 18px;
   color: white;

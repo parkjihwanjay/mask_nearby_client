@@ -9,7 +9,7 @@
           style="background-image: linear-gradient(306deg, #79d3e6 105%, #83d6e8 73%, #89d8e9 23%, #ffffff -5%);"
         >
           <div class="modal-header__title">
-            <div>마스크 알리미</div>
+            <div style="padding-left:65px">마스크 알리미</div>
             <button class="closeBtn">
               <img
                 @click="$emit('closeModal')"
@@ -20,9 +20,9 @@
             </button>
           </div>
 
-          <div class="modal-header__subtitle">
+          <!-- <div class="modal-header__subtitle">
             마스크 공적 판매처 재고현황을 확인해보세요!
-          </div>
+          </div> -->
         </div>
         <div class="modal-body">
           <!-- <div class="modal-body__img">
@@ -50,9 +50,11 @@
                 </strong>
               </li>
             </ul>
-            <div class="donation">
-              <img src="../assets/donation.png" />
-            </div>
+            <a target="blank" href="">
+              <div class="donation">
+                <img src="../assets/donation.png" />
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -63,7 +65,7 @@
       <div class="modal__content">
         <div
           class="modal-header"
-          style="width: 220px; height: 60px; background-image: linear-gradient(306deg, #79d3e6 105%, #83d6e8 73%, #89d8e9 23%, #ffffff -5%);"
+          style="width: 220px; height: 57px; background-image: linear-gradient(306deg, #79d3e6 105%, #83d6e8 73%, #89d8e9 23%, #ffffff -5%);"
         >
           <div
             class="modal-header__title"
