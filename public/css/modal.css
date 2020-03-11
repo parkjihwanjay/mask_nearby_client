@@ -72,7 +72,6 @@
   border-radius: 0 0 35px 35px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
-  display: flex;
 }
 .modal-body2 {
   width: 220px;

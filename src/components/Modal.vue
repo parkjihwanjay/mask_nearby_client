@@ -28,34 +28,31 @@
           <!-- <div class="modal-body__img">
 					<img class="img" src="../assets/modalList.png" alt="목록" />
           </div>-->
-          <div
-            class="modal-body__text"
-            style="position: relative; left: 5px; bottom: 10px; width: 260px;"
-          >
+          <div class="modal-body__text" style="width: 260px; margin : 0 auto;">
             <ul>
               <!-- <li>
                 <strong>공공 마스크 재고 현황을 제공합니다.</strong>
               </li>-->
-              <li style="font-size: 12.5px;">
+              <li style="font-size: 12.5px; opacity:0.75;">
                 <strong>
                   약국 재고 현황은 실시간이 아니며, 부정확할 수 있습니다. 마스크
                   판매에 힘써주시는 약사 분들의 노고를 생각해주시면
                   감사하겠습니다.
                 </strong>
               </li>
-              <li style="font-size: 12.5px;">
+              <li style="font-size: 12.5px; opacity:0.75;">
                 <strong>
                   정보 공개를 원치않으시는 약사분은 한국정보화진흥원
                   (maskdata@nia.or.kr) 으로 문의해주시기 바랍니다.
                 </strong>
               </li>
             </ul>
-            <a target="blank" href="">
-              <div class="donation">
-                <img src="../assets/donation.png" />
-              </div>
-            </a>
           </div>
+          <a target="blank" href="">
+            <div class="donation">
+              <img src="../assets/donation.png" />
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -165,7 +162,7 @@ export default {
   margin-bottom: 10px;
   position: relative;
   top: -7px;
-  left: -7px;
+  left: -2px;
   width: 278px;
   height: 169px;
 }
