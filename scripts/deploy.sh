@@ -20,41 +20,9 @@ if [ -d "$PROJECT" ]; then
   cd $PROJECT
   echo "Pull new version..."
   git pull origin master
-
-  echo "Install Packages..."
-  yarn install
 else
   echo "There's no Project. Clone New version..."
   git clone $GIT_REPOSITORY $PROJECT
-  cd $PROJECT
-
-  echo "Install Packages..."
-  yarn install
-fi
-
-if [ -d "$BUILD.old" ]; then
-  echo "dist.old Exists. Delete the old version..."
-  rm -rf "$BUILD.old"
-fi
-
-if [ -d "$BUILD" ]; then
-  cd $PROJECT
-  echo "Build New Version..."
-  yarn build
-
-  echo "Distribution Exists. Backup the old version..."
-  mv $BUILD $BUILD.old
-
-  echo "Deploy New Version..."
-  mv $DIST $BUILD
-
-else
-  cd $PROJECT
-  echo "Build New Version..."
-  yarn build
-
-  echo "Deploy New Version..."
-  mv $DIST $BUILD
 fi
 
 exit 0
