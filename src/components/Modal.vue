@@ -48,11 +48,11 @@
               </li>
             </ul>
           </div>
-          <a target="blank" href="">
-            <div class="donation">
+          <div class="donation">
+            <a target="blank" href="">
               <img src="../assets/donation.png" />
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
     </div>
