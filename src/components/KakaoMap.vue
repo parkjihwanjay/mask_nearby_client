@@ -1,7 +1,13 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
-      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
+      <div
+        class="input-back-back"
+        style="position: relative; top: 60px; z-index:2;"
+      >
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -289,11 +295,11 @@ export default {
         imageType = "pharm";
         // imageSrc = "/img/pharm.png"; // 마커이미지의 주소입니다
       } else if (maskItem.type === "02") {
-        // 02가 하나로 마트라고 가정
-        imageType = "hanaro";
-      } else {
-        // 03이 우체국이라고 가정
+        // 02가 우체국
         imageType = "post";
+      } else {
+        // 03이 하나로
+        imageType = "hanaro";
       }
 
       if (maskItem.remain_stat === "plenty") {
