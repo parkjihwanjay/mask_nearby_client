@@ -35,7 +35,7 @@
 }
 .modal-header {
   width: 273px;
-  height: 59px;
+  height: 72px;
   background-color: #75d0e7;
   border-radius: 35px 35px 0 0;
   color: #ffffff;
@@ -61,17 +61,18 @@
 .closeBtn {
   background-color: transparent;
   padding: 0;
-  padding-left: 7px;
+  padding-left: 103px;
   width: 18px;
   height: 18px;
   color: white;
 }
 .modal-body {
   width: 273px;
-  height: 353px;
+  height: 335px;
   border-radius: 0 0 35px 35px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
+  display: flex;
 }
 .modal-body2 {
   width: 220px;
