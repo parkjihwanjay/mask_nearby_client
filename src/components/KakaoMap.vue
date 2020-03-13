@@ -252,8 +252,11 @@ export default {
       // console.log("maskdata");
       // console.log(maskData);
       for (let i = 0; i < maskData.length; i++) {
-        if (maskData[i].sold_out) continue;
-
+        if (
+          maskData[i].addr ==
+          "서울특별시 강남구 남부순환로 2912 1층 102호 (대치동)"
+        )
+          continue;
         this.displayMask(maskData[i]);
       }
     },
