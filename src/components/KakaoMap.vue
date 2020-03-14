@@ -2,6 +2,7 @@
   <div
     class="top"
     style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+    @click="click"
   >
     <div class="map" id="map" ref="map">
       <div
@@ -168,6 +169,11 @@ export default {
     // }
   },
   methods: {
+    click(e) {
+      if (e.target.tagName === "svg") {
+        hideOverlays(window.overlays);
+      }
+    },
     checkHour() {
       const hour = new Date().getHours();
       if (10 > hour || hour >= 23) {
