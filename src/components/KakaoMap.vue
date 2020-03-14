@@ -278,7 +278,7 @@ export default {
     },
     displayMask(maskItem) {
       // console.log("maskItem");
-      console.log(maskItem);
+      // console.log(maskItem);
       let imageSrc;
       let imageType;
       let imageColor;
