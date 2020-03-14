@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="top"
-    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
-  >
+  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
     <div class="map" id="map" ref="map">
-      <div
-        class="input-back-back"
-        style="position: relative; top: 60px; z-index:2;"
-      >
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -284,7 +278,7 @@ export default {
     },
     displayMask(maskItem) {
       // console.log("maskItem");
-      // console.log(maskItem);
+      console.log(maskItem);
       let imageSrc;
       let imageType;
       let imageColor;
@@ -311,15 +305,19 @@ export default {
         remainStatus = "많음(100개 이상)";
       } else if (maskItem.remain_stat === "some") {
         // 노랑색 이미지(30~99개)
-        remainStatus = "보통(30~100개)";
+        remainStatus = "보통(30~99개)";
         imageColor = "yellow";
       } else if (maskItem.remain_stat === "few") {
         // 빨강색 이미지(1~29개)
-        remainStatus = "적음(1~30개)";
+        remainStatus = "적음(1~29개)";
         imageColor = "red";
+      } else if (maskItem.remain_stat === "empty") {
+        // 회색 이미지(0개)
+        remainStatus = "없음(0~1개)";
+        imageColor = "gray";
       } else {
         // 회색 이미지(0개)
-        remainStatus = "없음(0개)";
+        remainStatus = "판매중지";
         imageColor = "gray";
       }
 
