@@ -315,9 +315,13 @@ export default {
         // 회색 이미지(0개)
         remainStatus = "없음(0~1개)";
         imageColor = "gray";
-      } else {
+      } else if (maskItem.remain_stat === "break") {
         // 회색 이미지(0개)
         remainStatus = "판매중지";
+        imageColor = "gray";
+      } else {
+        // 회색 이미지(0개)
+        remainStatus = "정보없음";
         imageColor = "gray";
       }
 
