@@ -1,7 +1,13 @@
 <template>
-  <div class="top" style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;">
+  <div
+    class="top"
+    style="width: 100%; height: 100%; position: relative; z-index: 0; bottom: 60px;"
+  >
     <div class="map" id="map" ref="map">
-      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
+      <div
+        class="input-back-back"
+        style="position: relative; top: 60px; z-index:2;"
+      >
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -354,6 +360,10 @@ export default {
           maskItem.created_at = "정보없음";
           longlong = "left : 22px;";
         }
+        if (maskItem.stock_at === null) {
+          maskItem.stock_at = "정보없음";
+          longlong = "left : 22px;";
+        }
         const content =
           '<div class="wrap">' +
           '    <div class="info">' +
@@ -369,7 +379,12 @@ export default {
           "</div>" +
           '<div class="cool" style="position: relative; font-size: 12px;' +
           longlong +
-          'top: 0px;">업데이트 시간 : ' +
+          'top: -3px;">입고등록 시간 : ' +
+          maskItem.stock_at +
+          "</div>" +
+          '<div class="cool" style="position: relative; font-size: 12px;' +
+          longlong +
+          'top: -5px;">업데이트 시간 : ' +
           maskItem.created_at +
           "</div>" +
           '<div class="namu">' +

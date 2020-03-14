@@ -457,7 +457,7 @@ iframe {
     .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
     .info .close:hover {cursor: pointer;}
     .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 8px 0 0 23px;height: 75px;}
+    .info .desc {position: relative;margin: 0px 0 0 23px;height: 75px;}
     .desc .ellipsis {
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -475,7 +475,7 @@ iframe {
     justify-content: space-around;
     flex-direction: row;
     right: 8px;
-    top: 4px;
+    top: -7px;
     font-size: 13px;
     position: relative;
     border-width: 1px;
