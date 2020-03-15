@@ -391,7 +391,7 @@ export default {
           maskItem.lat +
           "," +
           maskItem.lng +
-          ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -3px;color: white;position: relative;">길찾기</div></div>' +
+          ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -2px;color: white;position: relative;">길찾기</div></div>' +
           '<div class="nice" style="position: relative; right: 4px; top: 11px; display: flex; text-align: center; flex-direction: row; justify-content: space-between; align-items: center;">' +
           '<div class="cool" style="position: relative; font-size: 12px;' +
           longlong +
