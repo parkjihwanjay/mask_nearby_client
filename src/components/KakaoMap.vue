@@ -358,14 +358,15 @@ export default {
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
         let longlong = "left : -6px;";
+        let longlong2 = "left : -6px;";
         // const maskOverlay = this.maskInfo(maskItem.masks);
         if (maskItem.created_at === null) {
           maskItem.created_at = "정보없음";
-          longlong = "left : 22px;";
+          longlong2 = "left : -14px;";
         }
         if (maskItem.stock_at === null) {
           maskItem.stock_at = "정보없음";
-          longlong = "left : 22px;";
+          longlong = "left : 0px;";
         }
         const content =
           '<div class="wrap">' +
@@ -398,7 +399,7 @@ export default {
           maskItem.stock_at.replace("2020/", "") +
           "</div>" +
           '<div class="cool" style="position: relative; font-size: 12px;' +
-          longlong +
+          longlong2 +
           'top: -3px;">업데이트 시간<br>  ' +
           maskItem.created_at.replace("2020/", "") +
           "</div>" +
