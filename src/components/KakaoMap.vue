@@ -358,17 +358,17 @@ export default {
         let longlong = "left : -6px;";
         let longlong2 = "left : -6px;";
         // const maskOverlay = this.maskInfo(maskItem.masks);
+        try {
+          maskItem.created_at = maskItem.created_at.replace("2020/", "");
+          maskItem.stock_at = maskItem.stock_at.replace("2020/", "");
+        } catch (e) {}
         if (maskItem.created_at === null) {
           maskItem.created_at = "정보없음";
           longlong2 = "left : -14px;";
-        } else {
-          // maskItem.created_at.replace("2020/", "");
         }
         if (maskItem.stock_at === null) {
           maskItem.stock_at = "정보없음";
-          longlong = "left : 0px;";
-        } else {
-          // maskItem.stock_at.replace("2020/", "");
+          longlong = "left : 0px  ;";
         }
         const content =
           '<div class="wrap">' +
