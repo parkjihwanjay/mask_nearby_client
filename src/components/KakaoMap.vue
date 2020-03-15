@@ -5,10 +5,7 @@
     @click="click"
   >
     <div class="map" id="map" ref="map">
-      <div
-        class="input-back-back"
-        style="position: relative; top: 60px; z-index:2;"
-      >
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -383,16 +380,6 @@ export default {
           "재고 상태 : " +
           remainStatus +
           "</div>" +
-          '<div class="cool" style="position: relative; font-size: 12px;' +
-          longlong +
-          'top: -3px;">입고등록 시간 : ' +
-          maskItem.stock_at +
-          "</div>" +
-          '<div class="cool" style="position: relative; font-size: 12px;' +
-          longlong +
-          'top: -5px;">업데이트 시간 : ' +
-          maskItem.created_at +
-          "</div>" +
           '<div class="namu">' +
           // '<div class="smallicons phone"></div><a style="text-decoration: none;" href="tel:' +
           // maskItem.tel +
@@ -404,6 +391,18 @@ export default {
           "," +
           maskItem.lng +
           ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -3px;color: white;position: relative;">길찾기</div></div>' +
+          '<div class="nice" style="position: relative; right: 4px; top: 11px; display: flex; text-align: center; flex-direction: row; justify-content: space-between; align-items: center;">' +
+          '<div class="cool" style="position: relative; font-size: 12px;' +
+          longlong +
+          'top: -3px;">입고등록 시간<br>' +
+          maskItem.stock_at.replace("2020/", "") +
+          "</div>" +
+          '<div class="cool" style="position: relative; font-size: 12px;' +
+          longlong +
+          'top: -3px;">업데이트 시간<br>  ' +
+          maskItem.created_at.replace("2020/", "") +
+          "</div>" +
+          "</div>" +
           "            </div>" +
           "        </div>" +
           "    </div>" +
