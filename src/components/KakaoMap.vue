@@ -385,12 +385,12 @@ export default {
           "</div>" +
           '<div class="cool" style="position: relative; font-size: 12px;' +
           longlong +
-          'top: -3px;">입고등록 시간 : ' +
+          'top: -5px;">입고등록 시간 : ' +
           maskItem.stock_at +
           "</div>" +
           '<div class="cool" style="position: relative; font-size: 12px;' +
           longlong +
-          'top: -5px;">업데이트 시간 : ' +
+          'top: -7px;">업데이트 시간 : ' +
           maskItem.created_at +
           "</div>" +
           '<div class="namu">' +
