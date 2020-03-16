@@ -28,19 +28,30 @@
               <!-- <li>
                 <strong>공공 마스크 재고 현황을 제공합니다.</strong>
               </li>-->
-              <li style="font-size: 12.5px; opacity:0.75;">
+              <li style="font-size: 12.5px; opacity:1.00;">
                 <strong>
                   약국 재고 현황은 실시간이 아니며, 부정확할 수 있습니다. 마스크
                   판매에 힘써주시는 약사 분들의 노고를 생각해주시면
                   감사하겠습니다.
                 </strong>
               </li>
-              <li style="font-size: 12.5px; opacity:0.75;">
+              <li style="font-size: 12.5px; opacity:1.00;">
                 <strong>
                   정보 공개를 원치않으시는 약사분은 한국정보화진흥원
                   (maskdata@nia.or.kr) 으로 문의해주시기 바랍니다.
                 </strong>
               </li>
+              <!-- <li>
+                기부해주신 모든 분들께 정말 감사드립니다.
+                기부금으로 구매한 위생용품을 빠른 시일 내에 전달한 뒤
+                모든 내역을 투명하게 공개하겠습니다.
+              </li>
+              <li>
+                마스크 알리미는 코로나 알리미를 제작했던
+                <br />대학생 4명의 아이디어와 노력에 이두희님의
+                <br />데이터
+                기술 자문이 더해져 만들어졌습니다.
+              </li>-->
             </ul>
           </div>
           <div class="donation">
