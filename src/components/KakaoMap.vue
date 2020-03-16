@@ -5,7 +5,10 @@
     @click="click"
   >
     <div class="map" id="map" ref="map">
-      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
+      <div
+        class="input-back-back"
+        style="position: relative; top: 60px; z-index:2;"
+      >
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -383,19 +386,6 @@ export default {
           "재고 상태 : " +
           remainStatus +
           "</div>" +
-<<<<<<< HEAD
-          '<div class="cool" style="position: relative; font-size: 12px;' +
-          longlong +
-          'top: -5px;">입고등록 시간 : ' +
-          maskItem.stock_at +
-          "</div>" +
-          '<div class="cool" style="position: relative; font-size: 12px;' +
-          longlong +
-          'top: -7px;">업데이트 시간 : ' +
-          maskItem.created_at +
-          "</div>" +
-=======
->>>>>>> 57350536e9b9d330b87be3426fde3e5d6c86ddbc
           '<div class="namu">' +
           // '<div class="smallicons phone"></div><a style="text-decoration: none;" href="tel:' +
           // maskItem.tel +
