@@ -5,10 +5,7 @@
     @click="click"
   >
     <div class="map" id="map" ref="map">
-      <div
-        class="input-back-back"
-        style="position: relative; top: 60px; z-index:2;"
-      >
+      <div class="input-back-back" style="position: relative; top: 60px; z-index:2;">
         <div class="input-backg">
           <div class="search-input2" id="search-input2" type="text" value>
             <input
@@ -196,51 +193,49 @@ export default {
       // window.markers = [];
       this.maskMarkers = [];
       this.spinnerLoading = true;
-      try {
-        // 요청 서버를 정부 서버로
-        const res = await axios.get(
-          `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=${this.area}`
-          // "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
-        );
+      // try {
+      // 요청 서버를 정부 서버로
+      const res = await axios.get(
+        `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${this.latitude}&lng=${this.longitude}&m=${this.area}`
+        // "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json"
+      );
 
-        const locPosition = new kakao.maps.LatLng(
-          this.latitude,
-          this.longitude
-        );
+      const locPosition = new kakao.maps.LatLng(this.latitude, this.longitude);
 
-        window.map.setCenter(locPosition);
+      window.map.setCenter(locPosition);
 
-        this.maskData = res.data.stores;
-        this.displayMasks(this.maskData);
-        this.spinnerLoading = false;
-        window.map.setDraggable(true);
+      this.maskData = res.data.stores;
+      this.displayMasks(this.maskData);
+      this.spinnerLoading = false;
+      window.map.setDraggable(true);
 
-        // if (!window.markers.length) {
-        // 	alert('주변에 마스크 재고가 있는 편의점을 찾지 못했습니다');
-        // }
-      } catch (e) {
-        try {
-          // 두희님 서버
-          const res = await axios.get(
-            `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
-          );
-          const locPosition = new kakao.maps.LatLng(
-            this.latitude,
-            this.longitude
-          );
+      // if (!window.markers.length) {
+      // 	alert('주변에 마스크 재고가 있는 편의점을 찾지 못했습니다');
+      // }
+      // }
+      // catch (e) {
+      //   try {
+      //     // 두희님 서버
+      //     const res = await axios.get(
+      //       `https://mask-api.com/gov?lat=${this.latitude}&lng=${this.longitude}`
+      //     );
+      //     const locPosition = new kakao.maps.LatLng(
+      //       this.latitude,
+      //       this.longitude
+      //     );
 
-          window.map.setCenter(locPosition);
+      //     window.map.setCenter(locPosition);
 
-          this.maskData = res.data;
-          this.displayMasks(this.maskData);
-          this.spinnerLoading = false;
-          window.map.setDraggable(true);
-        } catch (e) {
-          this.spinnerLoading = false;
-          window.map.setDraggable(true);
-          alert("서버 접속이 많아서 재시도 해 주세요");
-        }
-      }
+      //     this.maskData = res.data;
+      //     this.displayMasks(this.maskData);
+      //     this.spinnerLoading = false;
+      //     window.map.setDraggable(true);
+      //   } catch (e) {
+      //     this.spinnerLoading = false;
+      //     window.map.setDraggable(true);
+      //     alert("서버 접속이 많아서 재시도 해 주세요");
+      //   }
+      // }
     },
     maskInfo(masks) {
       let maskInfo = "";
@@ -361,14 +356,19 @@ export default {
       // 마커에 클릭이벤트를 등록합니다
       if (maskItem.name) {
         let longlong = "left : -6px;";
+        let longlong2 = "left : -6px;";
         // const maskOverlay = this.maskInfo(maskItem.masks);
+        try {
+          maskItem.created_at = maskItem.created_at.replace("2020/", "");
+          maskItem.stock_at = maskItem.stock_at.replace("2020/", "");
+        } catch (e) {}
         if (maskItem.created_at === null) {
           maskItem.created_at = "정보없음";
-          longlong = "left : 22px;";
+          longlong2 = "left : -14px;";
         }
         if (maskItem.stock_at === null) {
           maskItem.stock_at = "정보없음";
-          longlong = "left : 22px;";
+          longlong = "left : 0px  ;";
         }
         const content =
           '<div class="wrap">' +
@@ -383,6 +383,7 @@ export default {
           "재고 상태 : " +
           remainStatus +
           "</div>" +
+<<<<<<< HEAD
           '<div class="cool" style="position: relative; font-size: 12px;' +
           longlong +
           'top: -5px;">입고등록 시간 : ' +
@@ -393,6 +394,8 @@ export default {
           'top: -7px;">업데이트 시간 : ' +
           maskItem.created_at +
           "</div>" +
+=======
+>>>>>>> 57350536e9b9d330b87be3426fde3e5d6c86ddbc
           '<div class="namu">' +
           // '<div class="smallicons phone"></div><a style="text-decoration: none;" href="tel:' +
           // maskItem.tel +
@@ -403,7 +406,19 @@ export default {
           maskItem.lat +
           "," +
           maskItem.lng +
-          ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -3px;color: white;position: relative;">길찾기</div></div>' +
+          ' "class="link"><div class="font-in-overlay" style="right: 10px;bottom: -2px;color: white;position: relative;">길찾기</div></div>' +
+          '<div class="nice" style="position: relative; right: 4px; top: 11px; display: flex; text-align: center; flex-direction: row; justify-content: space-between; align-items: center;">' +
+          '<div class="cool" style="position: relative; font-size: 12px;' +
+          longlong +
+          'top: -3px;">입고등록 시간<br>' +
+          maskItem.stock_at +
+          "</div>" +
+          '<div class="cool" style="position: relative; font-size: 12px;' +
+          longlong2 +
+          'top: -3px;">업데이트 시간<br>  ' +
+          maskItem.created_at +
+          "</div>" +
+          "</div>" +
           "            </div>" +
           "        </div>" +
           "    </div>" +
