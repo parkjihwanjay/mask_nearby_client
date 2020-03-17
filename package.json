@@ -7,14 +7,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "connect:1": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82",
-    "connect:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115",
-    "deploy:1": "yarn connect:1 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "deploy:2": "yarn connect:2 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
-    "deploy:all": "yarn deploy:1 && yarn deploy:2",
-    "delete:1": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
-    "delete:2": "ssh -i ./src/config/corona-elksha.pem ubuntu@54.180.102.115 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\"",
-    "delete:all": "yarn delete:1 && yarn delete:2 && yarn delete:3 && yarn delete:4 && yarn delete:5"
+    "connect": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82",
+    "deploy": "yarn connect:1 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "delete": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\""
   },
   "dependencies": {
     "axios": "^0.19.2",
