@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "connect": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82",
-    "deploy": "yarn connect:1 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
+    "deploy": "yarn connect \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/deploy.sh\"",
     "delete": "ssh -i ./src/config/corona-elksha.pem ubuntu@3.34.3.82 \"source /home/ubuntu/.bashrc; bash /home/ubuntu/scripts/delete_log.sh\""
   },
   "dependencies": {
